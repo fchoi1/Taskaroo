@@ -6,6 +6,7 @@
 
 - React
 - Next.js
+- Typescript
 
 ### Backend:
 
