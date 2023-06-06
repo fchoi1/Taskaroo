@@ -6,7 +6,7 @@ import { useTheme } from "../../../theme/ThemeProvider";
 import BaseInterface from "../../BaseInterface";
 
 interface ButtonProps extends BaseInterface {
-  onClick: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
 }
 

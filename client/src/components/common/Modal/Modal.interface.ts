@@ -6,4 +6,8 @@ interface ModalProps extends BaseInterface {
   title: string;
 }
 
-export default ModalProps;
+interface ModalComponentProps extends BaseInterface {
+  children?: React.ReactNode;
+}
+
+export type { ModalProps as default, ModalComponentProps };

@@ -1,22 +1,22 @@
 "use client";
 
 import { NextPage } from "next";
+import { useState } from "react";
+import Link from "next/link";
 
-import Sidebar from "../../components/Sidebar";
+import Menu from "../../components/Menu";
 import CardComponent from "../../components/common/Card";
 import Button from "../../components/common/Button";
 import StatusColumn from "../../components/common/StatusColumn";
 import Modal from "../../components/common/Modal";
-import Link from "next/link";
 
-interface AboutPage {
+interface TaskBoardProps {
   // Define the props interface here if needed
 }
 
-const About: NextPage<AboutPage> = () => {
+const TaskBoard: NextPage<TaskBoardProps> = () => {
   return (
-    <div>
-      <Sidebar name="Name" />
+    <Menu>
       <CardComponent onClick={() => {}}></CardComponent>
       <StatusColumn />
       {/* <Modal title="Modal title"></Modal> */}
@@ -29,8 +29,8 @@ const About: NextPage<AboutPage> = () => {
       </Button>
       <Link href="/">main</Link>
       <div> This is the about with stuff</div>;
-    </div>
+    </Menu>
   );
 };
 
-export default About;
+export default TaskBoard;

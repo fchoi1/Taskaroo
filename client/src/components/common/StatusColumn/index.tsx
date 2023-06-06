@@ -1,9 +1,10 @@
-// components/Button/Button.tsx
 import React from "react";
 import styled from "styled-components";
 import StatusColumnProps from "./StatusColumn.interface";
 
-export const StyledButton = styled.div<StatusColumnProps>`
+import { useTheme } from "../../../theme/ThemeProvider";
+
+export const StyledStatus = styled.div<StatusColumnProps>`
   background-color: ${(props) => props.theme.colors.primary};
   color: ${(props) => props.theme.colors.secondary};
   padding: 0.5rem 1rem;
@@ -12,8 +13,10 @@ export const StyledButton = styled.div<StatusColumnProps>`
   cursor: pointer;
 `;
 
-const Button: React.FC<StatusColumnProps> = ({children }) => {
-  return <StyledButton >{children}</StyledButton>;
+const Button: React.FC<StatusColumnProps> = ({ children }) => {
+  const theme = useTheme();
+
+  return <StyledStatus theme={theme}>{children}</StyledStatus>;
 };
 
 export default Button;

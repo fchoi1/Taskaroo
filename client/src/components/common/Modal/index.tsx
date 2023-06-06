@@ -7,7 +7,6 @@ import {
   ModalTitle,
 } from "./Modal.styles";
 
-
 const Modal: React.FC<ModalProps> = ({ title, onClose, children }) => {
   return (
     <ModalContainer>
