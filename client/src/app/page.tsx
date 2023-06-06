@@ -1,11 +1,14 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Link from 'next/link';
 
 const Home: React.FC = () => {
   return (
     <main className={styles.main}>
       <div className={styles.description}> Description Here </div>
 
+      <Link href="/about">about</Link>
+      
       <div className={styles.center}>
         <h1 style={{ marginRight: "16px" }}>Taskaroo!</h1>
         <br />

@@ -1,17 +1,17 @@
 import { NextPage } from "next";
 import Sidebar from "../../components/Sidebar";
 
-interface AboutPage {
+interface ProfilePage {
   // Define the props interface here if needed
 }
 
-const About: NextPage<AboutPage> = () => {
+const Profile: NextPage<ProfilePage> = () => {
   return (
     <div>
       <Sidebar name="Name" />
-      <div> This is the about page</div>;
+      <div> This is the about Profile</div>;
     </div>
   );
 };
 
-export default About;
+export default Profile;
