@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { ModalComponentProps } from "./Modal.interface";
+import styled from 'styled-components';
+import { ModalComponentProps } from './Modal.interface';
 
 export const ModalContainer = styled.div<ModalComponentProps>`
   position: fixed;

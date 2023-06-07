@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Sidebar from "../Sidebar";
-import Navbar from "../Navbar";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import Sidebar from '../Sidebar';
+import Navbar from '../Navbar';
+import styled from 'styled-components';
 
 interface MeunProps {
   children: React.ReactNode;
@@ -59,16 +59,12 @@ const MainContent = styled.div`
 const Menu: React.FC<MeunProps> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const toggleSidebar = () => {
-    console.log("Toggling toggle");
+    console.log('Toggling toggle');
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
     <MenuContainer>
-      <SidebarGrid
-        projectName="Name"
-        toggleSidebar={toggleSidebar}
-        isOpen={isSidebarOpen}
-      />
+      <SidebarGrid projectName="Name" toggleSidebar={toggleSidebar} isOpen={isSidebarOpen} />
       <NavBarGrid name="test" />
       <MainContent>{children}</MainContent>
     </MenuContainer>

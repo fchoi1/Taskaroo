@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -9,7 +9,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
   const modalStyles = {
-    display: isOpen ? "block" : "none",
+    display: isOpen ? 'block' : 'none'
     /* Add your desired styles for the modal */
   };
 

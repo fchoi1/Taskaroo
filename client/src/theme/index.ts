@@ -9,10 +9,10 @@ interface Theme {
 
 const Theme: Theme = {
   colors: {
-    primary: "brown",
-    secondary: "white",
-    accent: "red",
-  },
+    primary: 'brown',
+    secondary: 'white',
+    accent: 'red'
+  }
 };
 
 export default Theme;

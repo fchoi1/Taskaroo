@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { NextPage } from "next";
+import { NextPage } from 'next';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 interface AboutPage {
   // Define the props interface here if needed

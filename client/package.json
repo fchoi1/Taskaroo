@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/eslint-plugin-next": "^13.4.4",
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
@@ -18,11 +19,15 @@
     "next": "^13.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.11",
-    "typescript": "5.1.3"
+    "styled-components": "^5.3.11"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/styled-components": "^5.1.26",
-    "eslint-config-prettier": "^8.8.0"
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-next": "^0.0.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3"
   }
 }

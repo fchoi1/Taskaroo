@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "../common/Button";
+import React from 'react';
+import styled from 'styled-components';
+import Button from '../common/Button';
 
 interface SidebarProps {
   projectName: string;
@@ -8,14 +8,14 @@ interface SidebarProps {
   isOpen?: boolean;
 }
 
-const SidebarContainer = styled.div<{ isOpen: boolean }>`
+const SidebarContainer = styled.div<{isOpen: boolean}>`
   top: 0; /* Adjust the top value to your preference */
   top: 0;
   height: 100vh;
   width: 200px;
   background-color: #333333;
   padding: 16px;
-  width: ${({ isOpen }) => (isOpen ? "200px" : "50px")};
+  width: ${({isOpen}) => (isOpen ? '200px' : '50px')};
 `;
 
 const MenuSection = styled.div`
@@ -47,11 +47,8 @@ const ProjectListItem = styled.li`
   margin-bottom: 8px;
 `;
 
-const Sidebar: React.FC<SidebarProps> = ({
-  isOpen = true,
-  projectName,
-  toggleSidebar,
-}) => {
+const Sidebar: React.FC<SidebarProps> = ({isOpen = true, projectName, toggleSidebar}) => {
+
   return (
     <SidebarContainer isOpen={isOpen}>
       <ProjectName>{projectName}</ProjectName>

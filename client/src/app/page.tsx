@@ -1,20 +1,11 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import {
-  Card,
-  CardDescription,
-  CardTitle,
-  Center,
-  Description,
-  Grid,
-  Main,
-  StyledHome,
-} from "./styledComponents";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Card, CardDescription, CardTitle, Center, Description, Grid, Main, StyledHome } from './styledComponents';
 
-import CardComponent from "../components/common/Card";
-import Button from "../components/common/Button";
+import CardComponent from '../components/common/Card';
+import Button from '../components/common/Button';
 
 const Home: React.FC = () => {
   return (
@@ -22,7 +13,7 @@ const Home: React.FC = () => {
       <Main>
         <Button
           onClick={() => {
-            console.log("clicked button");
+            console.log('clicked button');
           }}
         >
           Button
@@ -34,16 +25,9 @@ const Home: React.FC = () => {
         <Link href="/taskboard">taskboard</Link>
 
         <Center>
-          <h1 style={{ marginRight: "16px" }}>Taskaroo!</h1>
+          <h1 style={{ marginRight: '16px' }}>Taskaroo!</h1>
           <br />
-          <Image
-            className="logo"
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
+          <Image className="logo" src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
         </Center>
 
         <Grid>
@@ -53,9 +37,7 @@ const Home: React.FC = () => {
             rel="noopener noreferrer"
           >
             <CardTitle>Docs</CardTitle>
-            <CardDescription>
-              Find in-depth information about Next.js features and API.
-            </CardDescription>
+            <CardDescription>Find in-depth information about Next.js features and API.</CardDescription>
           </Card>
         </Grid>
       </Main>

@@ -1,5 +1,5 @@
-import BaseInterface from "../../BaseInterface";
-
+import React from 'react';
+import BaseInterface from '../../../BaseInterface';
 interface ModalProps extends BaseInterface {
   onClose?: () => void;
   children?: React.ReactNode;

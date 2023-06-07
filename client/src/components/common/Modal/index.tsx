@@ -1,11 +1,6 @@
-import React from "react";
-import ModalProps from "./Modal.interface";
-import {
-  ModalCloseButton,
-  ModalContainer,
-  ModalContent,
-  ModalTitle,
-} from "./Modal.styles";
+import React from 'react';
+import ModalProps from './Modal.interface';
+import { ModalCloseButton, ModalContainer, ModalContent, ModalTitle } from './Modal.styles';
 
 const Modal: React.FC<ModalProps> = ({ title, onClose, children }) => {
   return (

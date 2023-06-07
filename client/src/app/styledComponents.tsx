@@ -52,30 +52,6 @@ export const Center = styled.div`
   align-items: center;
   position: relative;
   padding: 4rem 0;
-
-  &::before {
-    background: var(--secondary-glow);
-    border-radius: 50%;
-    width: 480px;
-    height: 360px;
-    margin-left: -400px;
-  }
-
-  &::after {
-    background: var(--primary-glow);
-    width: 240px;
-    height: 180px;
-    z-index: -1;
-  }
-
-  &::before,
-  &::after {
-    content: '';
-    left: 50%;
-    position: absolute;
-    filter: blur(45px);
-    transform: translateZ(0);
-  }
 `;
 
 export const Grid = styled.div`

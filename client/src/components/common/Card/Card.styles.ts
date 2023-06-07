@@ -23,7 +23,7 @@ export const CardDescription = styled.p<CardProps>`
 
 export const CardContent = styled.div<CardProps>`
   margin-top: 12px;
-  color: red
+  color: red;
 `;
 
 export const CardFooter = styled.div<CardProps>`

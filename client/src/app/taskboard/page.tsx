@@ -1,28 +1,48 @@
-"use client";
+'use client';
 
-import { NextPage } from "next";
-import { useState } from "react";
-import Link from "next/link";
+import { NextPage } from 'next';
+import Link from 'next/link';
+import styled from 'styled-components';
 
-import Menu from "../../components/Menu";
-import CardComponent from "../../components/common/Card";
-import Button from "../../components/common/Button";
-import StatusColumn from "../../components/common/StatusColumn";
-import Modal from "../../components/common/Modal";
+// import Modal from '../../components/common/Modal';
+import BaseInterface from '../../BaseInterface';
+import Menu from '../../components/Menu';
+import Button from '../../components/common/Button';
+import Card from '../../components/common/Card';
+import StatusColumn from '../../components/common/StatusColumn';
 
-interface TaskBoardProps {
+export const StatusContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  justify-content: space-between;
+`;
+
+interface TaskBoardProps extends BaseInterface {
   // Define the props interface here if needed
 }
 
 const TaskBoard: NextPage<TaskBoardProps> = () => {
+  const Statuses = [{ name: 'To do' }, { name: 'In Progress' }, { name: 'Done' }];
+
   return (
     <Menu>
-      <CardComponent onClick={() => {}}></CardComponent>
-      <StatusColumn />
+      <StatusContainer>
+        {Statuses.map(({ name }, index) => (
+          <StatusColumn key={index} name={name}>
+            <Card
+              key={name + index}
+              onClick={(e) => {
+                console.log('card  clicked', e);
+              }}
+            ></Card>
+          </StatusColumn>
+        ))}
+      </StatusContainer>
       {/* <Modal title="Modal title"></Modal> */}
       <Button
         onClick={() => {
-          console.log("clicked button here");
+          console.log('clicked button here');
         }}
       >
         Button

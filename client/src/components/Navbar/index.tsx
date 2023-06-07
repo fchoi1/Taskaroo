@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import { UrlObject } from "url";
-import { Route } from "next";
-import styled from "styled-components";
+import React from 'react';
+import Link from 'next/link';
+import { UrlObject } from 'url';
+import { Route } from 'next';
+import styled from 'styled-components';
 
 interface NavbarLink {
   href: Route | UrlObject;
@@ -35,8 +35,8 @@ const NavbarLink = styled.h1`
 
 const Navbar: React.FC<NavbarProps> = ({ links, name }) => {
   const Navbarlinks = links ?? [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' }
   ];
   return (
     <NavbarContainer>

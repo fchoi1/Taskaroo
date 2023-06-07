@@ -1,8 +1,8 @@
-import BaseInterface from "../../BaseInterface";
-
+import React from 'react';
+import BaseInterface from '../../../BaseInterface';
 interface CardProps extends BaseInterface {
-    onClick?: () => void;
-    children?: React.ReactNode;
-  }
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  children?: React.ReactNode;
+}
 
-  export default CardProps
+export default CardProps;

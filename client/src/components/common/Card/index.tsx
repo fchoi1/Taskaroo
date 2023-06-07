@@ -1,14 +1,7 @@
-// components/Button/Button.tsx
-import React from "react";
-import CardProps from "./Card.interface";
+import React from 'react';
+import CardProps from './Card.interface';
 
-import {
-  CardContent,
-  CardDescription,
-  CardDiv,
-  CardFooter,
-  CardTitle,
-} from "./Card.styles";
+import { CardContent, CardDescription, CardDiv, CardFooter, CardTitle } from './Card.styles';
 
 const Card: React.FC<CardProps> = ({ onClick, children }) => {
   return (

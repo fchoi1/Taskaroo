@@ -1,22 +1,31 @@
-import React from "react";
-import styled from "styled-components";
-import StatusColumnProps from "./StatusColumn.interface";
+import React from 'react';
+import styled from 'styled-components';
 
-import { useTheme } from "../../../theme/ThemeProvider";
+import { useTheme } from '../../../theme/ThemeProvider';
+import StatusColumnProps from './StatusColumn.interface';
 
 export const StyledStatus = styled.div<StatusColumnProps>`
-  background-color: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100%;
+  margin: 0 5px;
 `;
 
-const Button: React.FC<StatusColumnProps> = ({ children }) => {
+const StatusColumn: React.FC<StatusColumnProps> = ({ name, children }) => {
   const theme = useTheme();
 
-  return <StyledStatus theme={theme}>{children}</StyledStatus>;
+  console.log('children:', children);
+
+  return (
+    <StyledStatus name={name} theme={theme}>
+      <h2>{name}</h2>
+      {children}
+    </StyledStatus>
+  );
 };
 
-export default Button;
+export default StatusColumn;
