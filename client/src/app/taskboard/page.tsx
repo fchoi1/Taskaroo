@@ -11,10 +11,9 @@ import StatusColumn from '../../components/StatusColumn';
 import Button from '../../components/common/Button';
 import Card from '../../components/common/Card';
 
-export const StatusContainer = styled.div`
+export const StatusesContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 100%;
   justify-content: space-between;
 `;
 
@@ -67,7 +66,7 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
   console.log('sorted tasks', Tasks);
   return (
     <Menu>
-      <StatusContainer>
+      <StatusesContainer>
         {Statuses.map(({ name, id }) => (
           <StatusColumn key={id} name={name} addTask={name === 'To do'}>
             {tasksByStatus[id]?.map(({ id, title }) => (
@@ -81,7 +80,7 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
             ))}
           </StatusColumn>
         ))}
-      </StatusContainer>
+      </StatusesContainer>
       {/* <Modal title="Modal title"></Modal> */}
       {/* <Button
         onClick={() => {
