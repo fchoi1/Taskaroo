@@ -1,6 +1,13 @@
 import React from 'react';
-import ModalProps from './Modal.interface';
+
+import BaseInterface from '../../../BaseInterface';
 import { ModalCloseButton, ModalContainer, ModalContent, ModalTitle } from './Modal.styles';
+
+interface ModalProps extends BaseInterface {
+  onClose?: () => void;
+  children?: React.ReactNode;
+  title: string;
+}
 
 const Modal: React.FC<ModalProps> = ({ title, onClose, children }) => {
   return (

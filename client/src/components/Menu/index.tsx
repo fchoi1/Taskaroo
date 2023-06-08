@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Sidebar from '../Sidebar';
-import Navbar from '../Navbar';
 import styled from 'styled-components';
+
+import Navbar from '../Navbar';
+import Sidebar from '../Sidebar';
 
 interface MeunProps {
   children: React.ReactNode;
@@ -49,7 +50,7 @@ const MainContent = styled.div`
   grid-row: 2;
   background-color: white;
   padding: 20px;
-
+  overflow-y: scroll;
   @media (max-width: 768px) {
     grid-column: 1;
     grid-row: 3;

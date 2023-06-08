@@ -1,16 +1,22 @@
 import React from 'react';
-import CardProps from './Card.interface';
 
-import { CardContent, CardDescription, CardDiv, CardFooter, CardTitle } from './Card.styles';
+import BaseInterface from '../../../BaseInterface';
+import { CardContent, CardDescription, CardContainer, CardFooter, CardTitle } from './Card.styles';
 
-const Card: React.FC<CardProps> = ({ onClick, children }) => {
+interface CardProps extends BaseInterface {
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  children?: React.ReactNode;
+  title: string;
+}
+
+const Card: React.FC<CardProps> = ({ onClick, title, children }) => {
   return (
-    <CardDiv onClick={onClick}>
-      <CardTitle>Title</CardTitle>
+    <CardContainer onClick={onClick}>
+      <CardTitle>{title}</CardTitle>
       <CardDescription>Description</CardDescription>
       <CardContent>Test Content {children}</CardContent>
       <CardFooter>Footer</CardFooter>
-    </CardDiv>
+    </CardContainer>
   );
 };
 
