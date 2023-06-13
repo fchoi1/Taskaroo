@@ -3,7 +3,7 @@
 import { Inter } from 'next/font/google';
 import React from 'react';
 
-import Theme from '../theme';
+import { theme } from '../theme';
 import { ThemeProvider } from '../theme/ThemeProvider';
 import './globals.css';
 
@@ -20,7 +20,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         <body className={inter.className}>{children}</body>
       </ThemeProvider>
     </html>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BaseInterface from '../../../BaseInterface';
-import Theme from '../../../theme';
+import { Theme } from '../../../theme';
 import { useTheme } from '../../../theme/ThemeProvider';
 
 interface ButtonProps extends BaseInterface {

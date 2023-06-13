@@ -60,7 +60,6 @@ const MainContent = styled.div`
 const Menu: React.FC<MeunProps> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const toggleSidebar = () => {
-    console.log('Toggling toggle');
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (

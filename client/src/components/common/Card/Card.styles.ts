@@ -1,7 +1,7 @@
 // components/Button/Button.styles.ts
 import styled from 'styled-components';
 
-import Theme from '../../../theme';
+import { Theme } from '../../../theme';
 
 export const CardContainer = styled.div<{ theme: Theme }>`
   background-color: black;

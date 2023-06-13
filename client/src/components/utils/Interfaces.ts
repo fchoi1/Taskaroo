@@ -7,5 +7,6 @@ export interface Task {
 export interface Status {
   id: number;
   name: string;
+  step: number;
   tasks: Task[];
 }

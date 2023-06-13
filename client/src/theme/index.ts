@@ -1,5 +1,4 @@
-// theme/theme.ts
-interface Theme {
+export interface Theme {
   colors: {
     primary: string;
     secondary: string;
@@ -7,12 +6,10 @@ interface Theme {
   };
 }
 
-const Theme: Theme = {
+export const theme: Theme = {
   colors: {
     primary: 'brown',
     secondary: 'white',
     accent: 'red'
   }
 };
-
-export default Theme;
