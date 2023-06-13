@@ -1,5 +1,5 @@
 import React from 'react';
-import { Droppable, DroppableProvided } from 'react-beautiful-dnd';
+import { Droppable, DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
 
 import BaseInterface from '../../BaseInterface';
 import { useTheme } from '../../theme/ThemeProvider';
@@ -33,8 +33,13 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
       </StatusHeader>
       <ColorSeparatorBar />
       <Droppable droppableId={`status-${step}`}>
-        {(provided: DroppableProvided) => (
-          <TasksContiner {...provided.droppableProps} ref={provided.innerRef}>
+        {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
+          <TasksContiner
+            theme={theme}
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            isDraggingOver={snapshot.isDraggingOver}
+          >
             {tasks
               .filter((task) => task.statusId === statusId)
               .map((task, index) => (

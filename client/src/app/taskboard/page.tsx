@@ -59,8 +59,10 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
     const { source, destination } = result;
     const sourceIndex = parseInt(source.droppableId.split('-')[1]) - 1;
     const destIndex = parseInt(destination.droppableId.split('-')[1]) - 1;
+
     const sourceStatus = statuses[sourceIndex];
     const destStatus = statuses[destIndex];
+
     if (source.droppableId !== destination.droppableId) {
       const sourceTasks = [...sourceStatus.tasks];
       const destTasks = [...destStatus.tasks];
@@ -69,22 +71,19 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
       removed.statusId = destStatus.id;
       destTasks.splice(destination.index, 0, removed);
 
-      const updatedColumns = [...statuses];
-      updatedColumns[sourceIndex] = { ...sourceStatus, tasks: sourceTasks };
-      updatedColumns[destIndex] = { ...destStatus, tasks: destTasks };
-      setStatuses(updatedColumns);
+      const updatedStatuses = [...statuses];
+      updatedStatuses[sourceIndex] = { ...sourceStatus, tasks: sourceTasks };
+      updatedStatuses[destIndex] = { ...destStatus, tasks: destTasks };
+
+      setStatuses(updatedStatuses);
     } else {
-      const column = statuses[sourceIndex];
-      const copiedTasks = [...column.tasks];
+      const copiedTasks = [...sourceStatus.tasks];
       const [removed] = copiedTasks.splice(source.index, 1);
       copiedTasks.splice(destination.index, 0, removed);
-      const updatedColumns = [...statuses];
-      updatedColumns[sourceIndex] = {
-        ...column,
-        tasks: copiedTasks
-      };
+      const updatedStatuses = [...statuses];
+      updatedStatuses[sourceIndex] = { ...sourceStatus, tasks: copiedTasks };
 
-      setStatuses(updatedColumns);
+      setStatuses(updatedStatuses);
     }
   };
 

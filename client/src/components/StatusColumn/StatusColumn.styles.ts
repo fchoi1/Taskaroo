@@ -11,8 +11,16 @@ export const StatusTitle = styled.div<{ theme: Theme }>`
   flex-direction: column;
 `;
 
-export const TasksContiner = styled.div<{ theme: Theme }>`
+export const TasksContiner = styled.div<{ theme: Theme; isDraggingOver: boolean }>`
   font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: ${(props) => {
+    console.log('props', props);
+    const { theme, isDraggingOver } = props;
+    return isDraggingOver ? 'lightblue' : theme.colors.secondary;
+  }};
 `;
 
 export const StatusContainer = styled.div<{ theme: Theme }>`
@@ -24,6 +32,8 @@ export const StatusContainer = styled.div<{ theme: Theme }>`
   cursor: pointer;
   width: 100%;
   margin: 0 5px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StatusHeader = styled.div<{ theme: Theme }>`

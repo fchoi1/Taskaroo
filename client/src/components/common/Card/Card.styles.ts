@@ -9,7 +9,7 @@ export const CardContainer = styled.div<{ theme: Theme }>`
   border-radius: 4px;
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 10px 0;
+  margin: 5px 0;
 `;
 
 export const CardTitle = styled.h3<{ theme: Theme }>`
