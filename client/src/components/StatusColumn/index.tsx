@@ -36,7 +36,7 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
         {(provided: DroppableProvided) => (
           <TasksContiner {...provided.droppableProps} ref={provided.innerRef}>
             {tasks
-              // .filter((task) => task.statusId === statusId)
+              .filter((task) => task.statusId === statusId)
               .map((task, index) => (
                 <Card
                   index={index}
