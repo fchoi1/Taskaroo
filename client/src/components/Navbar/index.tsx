@@ -4,13 +4,13 @@ import { UrlObject } from 'url';
 import { Route } from 'next';
 import styled from 'styled-components';
 
-interface NavbarLink {
+interface NavbarLinkProps {
   href: Route | UrlObject;
   label: string;
 }
 
 interface NavbarProps {
-  links?: NavbarLink[];
+  links?: NavbarLinkProps[];
   name: string;
 }
 
