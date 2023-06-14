@@ -16,11 +16,8 @@ export const TasksContiner = styled.div<{ theme: Theme; isDraggingOver: boolean 
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  background-color: ${(props) => {
-    console.log('props', props);
-    const { theme, isDraggingOver } = props;
-    return isDraggingOver ? 'lightblue' : theme.colors.secondary;
-  }};
+  background-color: ${({ theme, isDraggingOver }) =>
+    isDraggingOver ? theme.colors.accent : 'lightblue'};
 `;
 
 export const StatusContainer = styled.div<{ theme: Theme }>`

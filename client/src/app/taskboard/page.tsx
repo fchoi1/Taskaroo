@@ -87,7 +87,6 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
     }
   };
 
-  console.log('statuses', statuses);
   return (
     <Menu>
       <DragDropContext onDragEnd={(result) => handleDragEnd(result, statuses, setStatuses)}>
