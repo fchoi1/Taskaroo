@@ -22,11 +22,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, projectName, toggleSid
   return (
     <SidebarContainer isOpen={isOpen} theme={theme}>
       <ProjectName theme={theme}>{projectName}</ProjectName>
-      <CollapseButton onClick={toggleSidebar}>Collapse</CollapseButton>
+      <CollapseButton theme={theme} onClick={toggleSidebar}>
+        Collapse
+      </CollapseButton>
       {isOpen && (
         <>
           <MenuSection>
-            <Button>Home</Button>
+            <Button color="accent">Home</Button>
             <Button>Messages</Button>
             <Button>Tasks</Button>
             <Button>Members</Button>

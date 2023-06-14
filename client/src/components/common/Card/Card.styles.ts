@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Theme } from '../../../theme';
 
 export const CardContainer = styled.div<{ theme: Theme; isDragging: boolean }>`
-  background-color: ${({ theme, isDragging }) => (isDragging ? '#456C86' : theme.colors.secondary)};
+  background-color: ${({ theme, isDragging }) => (isDragging ? '#456C86' : theme.colors.secondary.color)};
   border: 1px solid #eaeaea;
   border-radius: 4px;
   padding: 15px;

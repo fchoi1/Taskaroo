@@ -17,7 +17,7 @@ export const MenuContainer = styled.div<{ theme: Theme }>`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    grid-template-rows: 100px auto;
+    grid-template-rows: 100px auto auto;
   }
 `;
 
@@ -27,7 +27,7 @@ export const SidebarGrid = styled(Sidebar)<{ theme: Theme }>`
 
   @media (max-width: 768px) {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
   }
 `;
 
@@ -38,7 +38,7 @@ export const NavBarGrid = styled(Navbar)<{ theme: Theme }>`
 
   @media (max-width: 768px) {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
   }
 `;
 

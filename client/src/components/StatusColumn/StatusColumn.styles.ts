@@ -17,12 +17,12 @@ export const TasksContiner = styled.div<{ theme: Theme; isDraggingOver: boolean 
   flex-direction: column;
   flex-grow: 1;
   background-color: ${({ theme, isDraggingOver }) =>
-    isDraggingOver ? theme.colors.accent : 'lightblue'};
+    isDraggingOver ? theme.colors.accent.color : 'lightblue'};
 `;
 
 export const StatusContainer = styled.div<{ theme: Theme }>`
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.primary.color};
+  color: ${({ theme }) => theme.colors.secondary.color};
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
