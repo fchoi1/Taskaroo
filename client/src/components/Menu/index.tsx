@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { useTheme } from '../../theme/ThemeProvider';
 import { MainContent, MenuContainer, NavBarGrid, SidebarGrid } from './Menu.styles';
 
 interface MeunProps {
@@ -12,9 +11,8 @@ const Menu: React.FC<MeunProps> = ({ children }) => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const theme = useTheme();
   return (
-    <MenuContainer theme={theme}>
+    <MenuContainer >
       <SidebarGrid projectName="Name" toggleSidebar={toggleSidebar} isOpen={isSidebarOpen} />
       <NavBarGrid name="test" />
       <MainContent>{children}</MainContent>

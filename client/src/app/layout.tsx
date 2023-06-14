@@ -4,7 +4,8 @@ import { Inter } from 'next/font/google';
 import React from 'react';
 
 import { theme } from '../theme';
-import { ThemeProvider } from '../theme/ThemeProvider';
+import { ThemeProvider } from "styled-components"
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -20,9 +21,9 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <ThemeProvider theme={theme}>
-        <body className={inter.className}>{children}</body>
-      </ThemeProvider>
+      <body className={inter.className}>
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import React from 'react';
 import { UrlObject } from 'url';
 
-import { useTheme } from '../../theme/ThemeProvider';
 import { NavbarContainer, NavbarLink } from './Navbar.styles';
 
 interface NavbarLinkProps {
@@ -17,13 +16,12 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ links, name }) => {
-  const theme = useTheme();
   const Navbarlinks = links ?? [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' }
   ];
   return (
-    <NavbarContainer theme={theme}>
+    <NavbarContainer>
       <h1>Hello {name}</h1>
 
       {Navbarlinks.map((link, index) => (

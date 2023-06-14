@@ -1,14 +1,18 @@
+import { faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-import { useTheme } from '../../theme/ThemeProvider';
-import Button from '../common/Button';
 import {
   CollapseButton,
+  MenuButton,
   MenuSection,
   ProjectList,
+  ProjectListContainer,
   ProjectListItem,
   ProjectName,
-  SidebarContainer
+  ProjectNameContainer,
+  SidebarContainer,
+  SidebarMenuContainer
 } from './Sidebar.styles';
 
 interface SidebarProps {
@@ -17,32 +21,48 @@ interface SidebarProps {
   isOpen?: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, projectName, toggleSidebar }) => {
-  const theme = useTheme();
-  return (
-    <SidebarContainer isOpen={isOpen} theme={theme}>
-      <ProjectName theme={theme}>{projectName}</ProjectName>
-      <CollapseButton theme={theme} onClick={toggleSidebar}>
-        Collapse
-      </CollapseButton>
-      {isOpen && (
-        <>
-          <MenuSection>
-            <Button color="accent">Home</Button>
-            <Button>Messages</Button>
-            <Button>Tasks</Button>
-            <Button>Members</Button>
-            <Button>Settings</Button>
-          </MenuSection>
+const MenuButtons = [
+  { name: 'Home', color: 'primary' },
+  { name: 'Messages', color: 'secondary' },
+  { name: 'Tasks', color: 'background' },
+  { name: 'Members', color: 'text' },
+  { name: 'Settings', color: 'accent' },
+  { name: 'Success', color: 'success' },
+  { name: 'warning', color: 'warning' },
+  { name: 'error', color: 'error' }
+];
 
-          <ProjectList>
-            <ProjectListItem>Project 1</ProjectListItem>
-            <ProjectListItem>Project 2</ProjectListItem>
-            <ProjectListItem>Project 3</ProjectListItem>
-            {/* Add more project items as needed */}
-          </ProjectList>
-        </>
-      )}
+const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, projectName, toggleSidebar }) => {
+  return (
+    <SidebarContainer isOpen={isOpen}>
+      <ProjectNameContainer>
+        <ProjectName isOpen={isOpen}>{projectName}</ProjectName>
+        <CollapseButton onClick={toggleSidebar}>
+          <FontAwesomeIcon icon={isOpen ? faAnglesLeft : faAnglesRight} />
+        </CollapseButton>
+      </ProjectNameContainer>
+      <SidebarMenuContainer>
+        {isOpen && (
+          <>
+            <MenuSection>
+              {MenuButtons &&
+                MenuButtons.map(({ name, color }, index) => (
+                  <MenuButton key={index} color={color}>
+                    {name}
+                  </MenuButton>
+                ))}
+            </MenuSection>
+            <ProjectListContainer>
+              <ProjectList>
+                <ProjectListItem>Project 1</ProjectListItem>
+                <ProjectListItem>Project 2</ProjectListItem>
+                <ProjectListItem>Project 3</ProjectListItem>
+                {/* Add more project items as needed */}
+              </ProjectList>
+            </ProjectListContainer>
+          </>
+        )}
+      </SidebarMenuContainer>
     </SidebarContainer>
   );
 };

@@ -89,7 +89,9 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
 
   return (
     <Menu>
-      <DragDropContext onDragEnd={(result) => handleDragEnd(result, statuses, setStatuses)}>
+      <DragDropContext
+        onDragEnd={(result: DropResult) => handleDragEnd(result, statuses, setStatuses)}
+      >
         <StatusesContainer>
           {statuses.map((status) => {
             const { id, name } = status;

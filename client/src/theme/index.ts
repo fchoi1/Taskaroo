@@ -17,7 +17,6 @@ export interface Theme {
   sizes: {
     navBar: {
       height: string;
-      padding: string;
     };
   };
 }
@@ -60,7 +59,6 @@ export const theme: Theme = {
   sizes: {
     navBar: {
       height: '70px',
-      padding: '16px'
     }
   }
 };

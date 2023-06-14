@@ -7,9 +7,7 @@ import Sidebar from '../Sidebar';
 export const MenuContainer = styled.div<{ theme: Theme }>`
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows:
-    calc(${({ theme }) => `${theme.sizes.navBar.height} + ${theme.sizes.navBar.padding}`})
-    1fr;
+  grid-template-rows: ${({ theme }) => theme.sizes.navBar.height} 1fr;
   gap: 1em;
   height: 100vh;
 
@@ -21,7 +19,7 @@ export const MenuContainer = styled.div<{ theme: Theme }>`
   }
 `;
 
-export const SidebarGrid = styled(Sidebar)<{ theme: Theme }>`
+export const SidebarGrid = styled(Sidebar)`
   grid-column: 1 / span 2;
   padding: 20px;
 
@@ -31,7 +29,7 @@ export const SidebarGrid = styled(Sidebar)<{ theme: Theme }>`
   }
 `;
 
-export const NavBarGrid = styled(Navbar)<{ theme: Theme }>`
+export const NavBarGrid = styled(Navbar)`
   grid-column: 2;
   grid-row: 1;
   padding: 20px;
@@ -42,7 +40,7 @@ export const NavBarGrid = styled(Navbar)<{ theme: Theme }>`
   }
 `;
 
-export const MainContent = styled.div<{ theme: Theme }>`
+export const MainContent = styled.div`
   grid-column: 2;
   grid-row: 2;
   background-color: white;

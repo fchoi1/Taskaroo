@@ -1,7 +1,6 @@
 import React from 'react';
 
 import BaseInterface from '../../../BaseInterface';
-import { useTheme } from '../../../theme/ThemeProvider';
 import { StyledButton } from './Button.styles';
 
 interface ButtonProps extends BaseInterface {
@@ -9,13 +8,13 @@ interface ButtonProps extends BaseInterface {
   children: React.ReactNode;
   backgroundColor?: string;
   color?: string;
+  className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, children, backgroundColor, color }) => {
-  const theme = useTheme();
+const Button: React.FC<ButtonProps> = ({ className, onClick, children, color }) => {
 
   return (
-    <StyledButton theme={theme} onClick={onClick} backgroundColor={backgroundColor} color={color}>
+    <StyledButton className={className} onClick={onClick} color={color}>
       {children}
     </StyledButton>
   );

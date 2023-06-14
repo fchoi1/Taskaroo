@@ -2,9 +2,8 @@
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:@next/next/recommended",
     "prettier"
   ],
-  "plugins": ["react", "@next/next"],
+  "plugins": ["react"],
   "ignorePatterns": ["node_modules", ".next"]
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { Droppable, DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
 
 import BaseInterface from '../../BaseInterface';
-import { useTheme } from '../../theme/ThemeProvider';
 import Card from '../common/Card';
 import { Status } from '../utils/Interfaces';
 import {
@@ -24,9 +23,8 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
   const { status, addTask = false } = props;
   const { id: statusId, name: statusName, tasks, step } = status;
 
-  const theme = useTheme();
   return (
-    <StatusContainer theme={theme}>
+    <StatusContainer>
       <StatusHeader>
         <StatusTitle>{statusName}</StatusTitle>
         {addTask && <AddTaskButton>Add Task</AddTaskButton>}
@@ -35,7 +33,6 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
       <Droppable droppableId={`status-${step}`}>
         {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
           <TasksContiner
-            theme={theme}
             {...provided.droppableProps}
             ref={provided.innerRef}
             isDraggingOver={snapshot.isDraggingOver}

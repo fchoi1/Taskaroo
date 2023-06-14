@@ -4,7 +4,7 @@ import { Theme } from '../../theme';
 
 export const NavbarContainer = styled.nav<{ theme: Theme }>`
   background-color: grey;
-  height: ${({ theme }) => theme.sizes.navBar.height};
+  height: auto
   padding: ${({ theme }) => theme.sizes.navBar.padding};
   z-index: 999;
   display: flex;
