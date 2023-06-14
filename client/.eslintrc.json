@@ -5,5 +5,6 @@
     "plugin:@next/next/recommended",
     "prettier"
   ],
-  "plugins": ["react", "@next/next"]
+  "plugins": ["react", "@next/next"],
+  "ignorePatterns": ["node_modules", ".next"]
 }

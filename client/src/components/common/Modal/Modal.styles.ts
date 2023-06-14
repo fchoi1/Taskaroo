@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { ModalComponentProps } from './Modal.interface';
 
-export const ModalContainer = styled.div<ModalComponentProps>`
+import { Theme } from '../../../theme';
+
+export const ModalContainer = styled.div<{ theme: Theme }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -13,19 +14,19 @@ export const ModalContainer = styled.div<ModalComponentProps>`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const ModalContent = styled.div<ModalComponentProps>`
+export const ModalContent = styled.div<{ theme: Theme }>`
   background-color: #ffffff;
   border-radius: 4px;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-export const ModalTitle = styled.h2<ModalComponentProps>`
+export const ModalTitle = styled.h2`
   font-size: 18px;
   margin-bottom: 16px;
 `;
 
-export const ModalCloseButton = styled.button<ModalComponentProps>`
+export const ModalCloseButton = styled.button<{ theme: Theme }>`
   position: absolute;
   top: 8px;
   right: 8px;

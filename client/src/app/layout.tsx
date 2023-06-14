@@ -1,11 +1,11 @@
 'use client';
 
-import './globals.css';
-
-import React from 'react';
 import { Inter } from 'next/font/google';
-import Theme from '../theme';
+import React from 'react';
+
+import { theme } from '../theme';
 import { ThemeProvider } from '../theme/ThemeProvider';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,8 +19,8 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang='en'>
-      <ThemeProvider theme={Theme}>
+    <html lang="en">
+      <ThemeProvider theme={theme}>
         <body className={inter.className}>{children}</body>
       </ThemeProvider>
     </html>

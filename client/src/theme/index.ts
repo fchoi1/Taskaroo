@@ -1,18 +1,31 @@
-// theme/theme.ts
-interface Theme {
+export interface Theme {
   colors: {
     primary: string;
     secondary: string;
     accent: string;
+    backgroundColor: string;
+    fontColor: string;
+  };
+  sizes: {
+    navBar: {
+      height: string;
+      padding: string;
+    };
   };
 }
 
-const Theme: Theme = {
+export const theme: Theme = {
   colors: {
     primary: 'brown',
     secondary: 'white',
-    accent: 'red'
+    accent: 'red',
+    backgroundColor: 'white',
+    fontColor: 'black'
+  },
+  sizes: {
+    navBar: {
+      height: '70px',
+      padding: '16px'
+    }
   }
 };
-
-export default Theme;
