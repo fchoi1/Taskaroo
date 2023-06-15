@@ -46,7 +46,6 @@ export const AddTaskButton = styled(Button)`
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
-  margin-bottom: 8px;
   cursor: pointer;
 `;
 

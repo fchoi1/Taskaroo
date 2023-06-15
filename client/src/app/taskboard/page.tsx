@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import BaseInterface from '../../BaseInterface';
 import Menu from '../../components/Menu';
 import StatusColumn from '../../components/StatusColumn';
-import { Status } from '../../components/utils/Interfaces';
+import { Status } from '../../utils/Interfaces';
 
 export const StatusesContainer = styled.div`
   display: flex;
@@ -88,18 +88,18 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
   };
 
   return (
-    <Menu>
-      <DragDropContext
-        onDragEnd={(result: DropResult) => handleDragEnd(result, statuses, setStatuses)}
-      >
-        <StatusesContainer>
-          {statuses.map((status) => {
-            const { id, name } = status;
-            return <StatusColumn key={id} addTask={name === 'To do'} status={status} />;
-          })}
-        </StatusesContainer>
-      </DragDropContext>
-    </Menu>
+      <Menu>
+        <DragDropContext
+          onDragEnd={(result: DropResult) => handleDragEnd(result, statuses, setStatuses)}
+        >
+          <StatusesContainer>
+            {statuses.map((status) => {
+              const { id, name } = status;
+              return <StatusColumn key={id} addTask={name === 'To do'} status={status} />;
+            })}
+          </StatusesContainer>
+        </DragDropContext>
+      </Menu>
   );
 };
 

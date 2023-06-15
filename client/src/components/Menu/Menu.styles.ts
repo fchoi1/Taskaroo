@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
 import { Theme } from '../../theme';
-import Navbar from '../Navbar';
-import Sidebar from '../Sidebar';
 
-export const MenuContainer = styled.div<{ theme: Theme }>`
+export const MenuContainer = styled.div<{ theme: Theme; isOpen: boolean }>`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: ${({ isOpen }) => (isOpen ? '200px' : '80px')} 1fr;
   grid-template-rows: ${({ theme }) => theme.sizes.navBar.height} 1fr;
   gap: 1em;
   height: 100vh;
@@ -19,20 +17,21 @@ export const MenuContainer = styled.div<{ theme: Theme }>`
   }
 `;
 
-export const SidebarGrid = styled(Sidebar)`
-  grid-column: 1 / span 2;
-  padding: 20px;
+export const SidebarGrid = styled.div`
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 100%;
 
   @media (max-width: 768px) {
     grid-column: 1;
     grid-row: 2;
+    width: 100%;
   }
 `;
 
-export const NavBarGrid = styled(Navbar)`
+export const NavBarGrid = styled.div`
   grid-column: 2;
   grid-row: 1;
-  padding: 20px;
 
   @media (max-width: 768px) {
     grid-column: 1;
