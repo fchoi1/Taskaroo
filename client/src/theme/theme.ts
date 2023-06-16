@@ -62,7 +62,6 @@ export const theme: Theme = {
     }
   },
   hoverColor: (color: string, percent: number) => {
-    console.log('hoverColor', color);
     const hexColor = color.length === 4 ? expandShortHex(color) : color;
     const lightenAmount = Math.abs(percent) / 100;
     const colorValue = parseInt(hexColor.substr(1), 16);

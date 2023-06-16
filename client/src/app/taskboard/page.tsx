@@ -18,6 +18,7 @@ export const StatusesContainer = styled.div`
 
 interface TaskBoardProps extends BaseInterface {
   // Define the props interface here if needed
+  children: React.ReactNode;
 }
 const Statuses: Status[] = [
   {
@@ -88,18 +89,18 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
   };
 
   return (
-      <Menu>
-        <DragDropContext
-          onDragEnd={(result: DropResult) => handleDragEnd(result, statuses, setStatuses)}
-        >
-          <StatusesContainer>
-            {statuses.map((status) => {
-              const { id, name } = status;
-              return <StatusColumn key={id} addTask={name === 'To do'} status={status} />;
-            })}
-          </StatusesContainer>
-        </DragDropContext>
-      </Menu>
+    <Menu>
+      <DragDropContext
+        onDragEnd={(result: DropResult) => handleDragEnd(result, statuses, setStatuses)}
+      >
+        <StatusesContainer>
+          {statuses.map((status) => {
+            const { id, name } = status;
+            return <StatusColumn key={id} addTask={name === 'To do'} status={status} />;
+          })}
+        </StatusesContainer>
+      </DragDropContext>
+    </Menu>
   );
 };
 

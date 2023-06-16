@@ -24,9 +24,6 @@ export const StyledButton = styled.button<{ theme: Theme; hover: boolean; color?
   ${({ theme, hover, color }) => {
     if (hover) {
       const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
-      console.log(hover, 'hoverColor', 'color', color, 'colorType', colorType);
-
-      console.log('new hover color', theme.hoverColor(colorType, 10));
       return `&:hover {
         background-color: ${theme.hoverColor(colorType, -10)};
           }`;

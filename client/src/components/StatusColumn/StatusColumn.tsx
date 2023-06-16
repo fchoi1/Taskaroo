@@ -1,9 +1,10 @@
-import React from 'react';
-import { Droppable, DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
+import React, { useEffect } from 'react';
+import { DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
 
 import BaseInterface from '../../BaseInterface';
 import { Status } from '../../utils/Interfaces';
 import Card from '../common/Card';
+import { StrictModeDroppable as Droppable } from '../common/Droppable';
 import {
   AddTaskButton,
   ColorSeparatorBar,
@@ -23,6 +24,16 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
   const { status, addTask = false } = props;
   const { id: statusId, name: statusName, tasks, step } = status;
 
+  useEffect(() => {
+    // Debugging code or side effect logic here
+    console.log('StatusColumn rendered', status);
+
+    // Clean up any necessary resources or event listeners
+    return () => {
+      console.log('StatusColumn unmounted', status);
+    };
+  }, []);
+
   return (
     <StatusContainer>
       <StatusHeader>
@@ -31,27 +42,31 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
       </StatusHeader>
       <ColorSeparatorBar />
       <Droppable droppableId={`status-${step}`}>
-        {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
-          <TasksContiner
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-            isDraggingOver={snapshot.isDraggingOver}
-          >
-            {tasks
-              .filter((task) => task.statusId === statusId)
-              .map((task, index) => (
-                <Card
-                  index={index}
-                  task={task}
-                  key={task.id}
-                  onClick={(e) => {
-                    console.log('card  clicked', e);
-                  }}
-                />
-              ))}
-            {provided.placeholder}
-          </TasksContiner>
-        )}
+        {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => {
+          console.log('Droppable rendering'); // Log the rendering of Droppable
+
+          return (
+            <TasksContiner
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              isDraggingOver={snapshot.isDraggingOver}
+            >
+              {tasks
+                .filter((task) => task.statusId === statusId)
+                .map((task, index) => (
+                  <Card
+                    index={index}
+                    task={task}
+                    key={task.id}
+                    onClick={(e) => {
+                      console.log('card  clicked', e);
+                    }}
+                  />
+                ))}
+              {provided.placeholder}
+            </TasksContiner>
+          );
+        }}
       </Droppable>
     </StatusContainer>
   );

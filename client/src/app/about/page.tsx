@@ -5,6 +5,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 interface AboutPage {
+  children: React.ReactNode;
   // Define the props interface here if needed
 }
 
@@ -17,8 +18,8 @@ const SomeButton = styled.div`
   }};
 `;
 
-const About: NextPage<AboutPage> = (props) => {
-  console.log('About', props);
+const About: NextPage<AboutPage> = ({ children }) => {
+  console.log('About', children);
   return (
     <div>
       <Link href="/">main</Link>
