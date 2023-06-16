@@ -2,8 +2,14 @@
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
-    "prettier"
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["react"],
-  "ignorePatterns": ["node_modules", ".next"]
+  "plugins": ["react", "@typescript-eslint"],
+  "ignorePatterns": ["node_modules", ".next"],
+  "rules": {
+    // Note: you must disable the base rule as it can report incorrect errors
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error"
+  }
 }

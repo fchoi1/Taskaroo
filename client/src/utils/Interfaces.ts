@@ -10,3 +10,9 @@ export interface Status {
   step: number;
   tasks: Task[];
 }
+
+export interface Project {
+  name: string;
+  color: string;
+  id: number;
+}
