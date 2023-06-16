@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
 
 import BaseInterface from '../../BaseInterface';
@@ -23,16 +23,6 @@ interface StatusColumnProps extends BaseInterface {
 const StatusColumn: React.FC<StatusColumnProps> = (props) => {
   const { status, addTask = false } = props;
   const { id: statusId, name: statusName, tasks, step } = status;
-
-  useEffect(() => {
-    // Debugging code or side effect logic here
-    console.log('StatusColumn rendered', status);
-
-    // Clean up any necessary resources or event listeners
-    return () => {
-      console.log('StatusColumn unmounted', status);
-    };
-  }, []);
 
   return (
     <StatusContainer>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Draggable, DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 
 import BaseInterface from '../../../BaseInterface';
@@ -15,15 +15,6 @@ interface CardProps extends BaseInterface {
 const Card: React.FC<CardProps> = ({ onClick, children, task, index }) => {
   const { title, id } = task;
 
-  useEffect(() => {
-    // Debugging code or side effect logic here
-    console.log('CCard rendered', task);
-
-    // Clean up any necessary resources or event listeners
-    return () => {
-      console.log('Card unmounted', task);
-    };
-  }, []);
   return (
     <Draggable draggableId={`task-${id}`} index={index} key={index}>
       {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
