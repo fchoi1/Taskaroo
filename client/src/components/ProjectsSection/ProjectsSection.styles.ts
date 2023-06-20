@@ -5,6 +5,7 @@ import { Theme } from '../../theme';
 export const MyProjectHeaderContainer = styled.div<{ isOpen: boolean }>`
   display: flex;
   justify-content: ${({ isOpen }) => (isOpen ? 'space-between' : 'center')};
+  align-items: center;
   padding: 5px;
 `;
 

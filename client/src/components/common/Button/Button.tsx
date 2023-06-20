@@ -9,12 +9,14 @@ interface ButtonProps extends BaseInterface {
   backgroundColor?: string;
   color?: string;
   hover?: boolean;
+  focus?: boolean;
+  active?: boolean;
   className?: string;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { hover = true, ...rest } = props;
-  return <StyledButton {...rest} hover={hover}></StyledButton>;
+  const { hover = true, active = true, focus = true, ...rest } = props;
+  return <StyledButton {...rest} active={active} focus={focus} hover={hover}></StyledButton>;
 };
 
 export default Button;

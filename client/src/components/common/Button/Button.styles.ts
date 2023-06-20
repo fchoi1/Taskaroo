@@ -2,7 +2,13 @@ import styled from 'styled-components';
 
 import { Theme } from '../../../theme';
 
-export const StyledButton = styled.button<{ theme: Theme; hover: boolean; color?: string }>`
+export const StyledButton = styled.button<{
+  theme: Theme;
+  hover?: boolean;
+  active?: boolean;
+  focus?: boolean;
+  color?: string;
+}>`
   background-color: ${({ theme, color }) =>
     color ? theme.colors[color]?.color : theme.colors.primary.color};
 
@@ -30,12 +36,22 @@ export const StyledButton = styled.button<{ theme: Theme; hover: boolean; color?
     }
   }}
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
-  }
+  ${({ theme, active, color }) => {
+    if (active) {
+      const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
+      return `&:active {
+        background-color: ${theme.hoverColor(colorType, -15)};
+      }`;
+    }
+  }}
 
-  &:active {
-    background-color: ${({ theme }) => theme.colors.accent.color};
-  }
+  ${({ theme, focus, color }) => {
+    if (focus) {
+      const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
+      return `&:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px ${theme.hoverColor(colorType, -15)};
+      }`;
+    }
+  }}
 `;

@@ -1,13 +1,24 @@
 import { Route } from 'next';
 import Link from 'next/link';
-import React from 'react';
+import React, { createElement } from 'react';
+import { Bell, Calendar, HelpCircle, Icon } from 'react-feather';
 import { UrlObject } from 'url';
 
-import { NavbarContainer, NavbarLink } from './Navbar.styles';
+import SearchBar from '../SearchBar';
+import Tooltip from '../common/Tooltip';
+import {
+  NavbarContainer,
+  NavbarLink,
+  NavbarLinkContainer,
+  RightChildrenWrapper,
+  SearchBarContainer,
+  UserContainer
+} from './Navbar.styles';
 
 interface NavbarLinkProps {
   href: Route | UrlObject;
   label: string;
+  icon: Icon;
 }
 
 interface NavbarProps {
@@ -15,20 +26,34 @@ interface NavbarProps {
   name: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ links, name }) => {
-  const Navbarlinks = links ?? [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' }
-  ];
+const Navbarlinks = [
+  { href: '/', label: 'Home', icon: Calendar },
+  { href: '/about', label: 'About', icon: HelpCircle },
+  { href: '/about', label: 'Calendar', icon: Calendar },
+  { href: '/about', label: 'Notification', icon: Bell }
+];
+
+const Navbar: React.FC<NavbarProps> = ({ name }) => {
   return (
     <NavbarContainer>
-      <h1>Hello {name}</h1>
+      <SearchBarContainer>
+        <SearchBar onChange={() => console.log('changed typing')} placeholder="Search" />
+      </SearchBarContainer>
+      <RightChildrenWrapper>
+        <NavbarLinkContainer>
+          {Navbarlinks.map(({ href, label, icon }, index) => (
+            <Link key={index} href={href} passHref>
+              <Tooltip text={label}>
+                <NavbarLink>{createElement(icon)}</NavbarLink>
+              </Tooltip>
+            </Link>
+          ))}
+        </NavbarLinkContainer>
 
-      {Navbarlinks.map((link, index) => (
-        <Link key={index} href={link.href} passHref>
-          <NavbarLink>{link.label}</NavbarLink>
-        </Link>
-      ))}
+        <UserContainer>
+          <h1>Hello {name}</h1>
+        </UserContainer>
+      </RightChildrenWrapper>
     </NavbarContainer>
   );
 };

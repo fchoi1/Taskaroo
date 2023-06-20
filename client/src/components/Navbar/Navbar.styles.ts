@@ -7,10 +7,25 @@ export const NavbarContainer = styled.nav<{ theme: Theme }>`
   height: 100%;
   padding: ${({ theme }) => theme.sizes.navBar.padding};
   display: flex;
-  flex-direction: row-reverse;
   align-items: center;
   border: red 3px dotted;
 `;
+
+export const SearchBarContainer = styled.div`
+  margin: 5px;
+`;
+
+export const RightChildrenWrapper = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
+export const NavbarLinkContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const UserContainer = styled.div``;
 
 export const NavbarLink = styled.h1`
   margin-right: 16px;
