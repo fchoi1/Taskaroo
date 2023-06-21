@@ -2,6 +2,7 @@ import React from 'react';
 import { DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
 
 import BaseInterface from '../../BaseInterface';
+import { useTaskContext } from '../../context/taskContext';
 import { Status } from '../../utils/Interfaces';
 import Card from '../common/Card';
 import { StrictModeDroppable as Droppable } from '../common/Droppable';
@@ -16,19 +17,24 @@ import {
 
 interface StatusColumnProps extends BaseInterface {
   children?: React.ReactNode;
-  addTask?: boolean;
+  showAddTaskButton?: boolean;
   status: Status;
 }
 
 const StatusColumn: React.FC<StatusColumnProps> = (props) => {
-  const { status, addTask = false } = props;
-  const { id: statusId, name: statusName, tasks, step } = status;
+  const { status, showAddTaskButton = false } = props;
+  const { id: statusId, name: statusName, step, tasks } = status;
+
+  const { addTask } = useTaskContext();
+  const newTask = { id: 12, title: 'Task 12', statusId: 1 };
 
   return (
     <StatusContainer>
       <StatusHeader>
         <StatusTitle>{statusName}</StatusTitle>
-        {addTask && <AddTaskButton>Add Task</AddTaskButton>}
+        {showAddTaskButton && (
+          <AddTaskButton onClick={() => addTask(newTask)}>Add Task</AddTaskButton>
+        )}
       </StatusHeader>
       <ColorSeparatorBar />
       <Droppable droppableId={`status-${step}`}>
@@ -41,18 +47,19 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
               ref={provided.innerRef}
               isDraggingOver={snapshot.isDraggingOver}
             >
-              {tasks
-                .filter((task) => task.statusId === statusId)
-                .map((task, index) => (
-                  <Card
-                    index={index}
-                    task={task}
-                    key={task.id}
-                    onClick={(e) => {
-                      console.log('card  clicked', e);
-                    }}
-                  />
-                ))}
+              {tasks &&
+                tasks
+                  .filter((task) => task.statusId === statusId)
+                  .map((task, index) => (
+                    <Card
+                      index={index}
+                      task={task}
+                      key={task.id}
+                      onClick={(e) => {
+                        console.log('card  clicked', e);
+                      }}
+                    />
+                  ))}
               {provided.placeholder}
             </TasksContiner>
           );

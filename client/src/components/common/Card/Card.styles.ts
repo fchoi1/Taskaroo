@@ -16,6 +16,7 @@ export const CardTitle = styled.h3`
   font-size: 18px;
   font-weight: bold;
   margin: 0;
+  color: black;
 `;
 
 export const CardDescription = styled.p`

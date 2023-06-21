@@ -1,14 +1,15 @@
 'use client';
 
 import { NextPage } from 'next';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 import BaseInterface from '../../BaseInterface';
 import Menu from '../../components/Menu';
 import StatusColumn from '../../components/StatusColumn';
-import { Status } from '../../utils/Interfaces';
+import { useTaskContext } from '../../context/taskContext';
+import { Status, Task } from '../../utils/Interfaces';
 
 export const StatusesContainer = styled.div`
   display: flex;
@@ -20,36 +21,35 @@ interface TaskBoardProps extends BaseInterface {
   // Define the props interface here if needed
   children: React.ReactNode;
 }
-const Statuses: Status[] = [
-  {
-    id: 1,
-    step: 1,
-    name: 'To do',
-    tasks: [
-      { id: 1, title: 'Task 1', statusId: 1 },
-      { id: 5, title: 'Task 5', statusId: 1 },
-      { id: 6, title: 'Task 6', statusId: 1 },
-      { id: 8, title: 'Task 8', statusId: 1 },
-      { id: 9, title: 'Task 9', statusId: 1 },
-      { id: 10, title: 'Task 10', statusId: 1 },
-      { id: 11, title: 'Task 11', statusId: 1 }
-    ]
-  },
-  {
-    id: 2,
-    step: 2,
-    name: 'In Progress',
-    tasks: [
-      { id: 2, title: 'Task 2', statusId: 2 },
-      { id: 3, title: 'Task 3', statusId: 2 },
-      { id: 7, title: 'Task 7', statusId: 2 }
-    ]
-  },
-  { id: 3, step: 3, name: 'Done', tasks: [{ id: 4, title: 'Task 4', statusId: 3 }] }
+const statusesBlank: Status[] = [
+  { id: 1, step: 1, name: 'To do', tasks: [] },
+  { id: 2, step: 2, name: 'In Progress', tasks: [] },
+  { id: 3, step: 3, name: 'Done', tasks: [] },
+  { id: 4, step: 4, name: 'Test', tasks: [] }
 ];
 
+const assignTasksToStatuses = (tasks: Task[], statuses: Status[]): Status[] => {
+  const updatedStatuses: Status[] = statuses.map((status) => {
+    const statusTasks = tasks.filter((task) => task.statusId === status.id);
+    return { ...status, tasks: statusTasks };
+  });
+
+  return updatedStatuses;
+};
+
 const TaskBoard: NextPage<TaskBoardProps> = () => {
-  const [statuses, setStatuses] = useState<Status[]>(Statuses);
+  const { tasks } = useTaskContext();
+
+  //  get statuses somehow from project api
+  const [statuses, setStatuses] = useState<Status[]>(
+    assignTasksToStatuses(tasks ?? [], statusesBlank)
+  );
+
+  useEffect(() => {
+    const initialStatuses = assignTasksToStatuses(tasks, statusesBlank);
+    setStatuses(initialStatuses);
+    console.log('got tasks!!!', tasks);
+  }, [tasks]);
 
   const handleDragEnd = (
     result: DropResult,
@@ -96,7 +96,7 @@ const TaskBoard: NextPage<TaskBoardProps> = () => {
         <StatusesContainer>
           {statuses.map((status) => {
             const { id, name } = status;
-            return <StatusColumn key={id} addTask={name === 'To do'} status={status} />;
+            return <StatusColumn key={id} showAddTaskButton={name === 'To do'} status={status} />;
           })}
         </StatusesContainer>
       </DragDropContext>
