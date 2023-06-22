@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../../theme';
+// import { Theme } from '../../../theme';
 
-export const ModalContainer = styled.div<{ theme: Theme }>`
+export const ModalContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +14,7 @@ export const ModalContainer = styled.div<{ theme: Theme }>`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const ModalContent = styled.div<{ theme: Theme }>`
+export const ModalContent = styled.div`
   background-color: #ffffff;
   border-radius: 4px;
   padding: 16px;
@@ -26,7 +26,7 @@ export const ModalTitle = styled.h2`
   margin-bottom: 16px;
 `;
 
-export const ModalCloseButton = styled.button<{ theme: Theme }>`
+export const ModalCloseButton = styled.button`
   position: absolute;
   top: 8px;
   right: 8px;

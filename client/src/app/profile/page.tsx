@@ -4,6 +4,8 @@ import Sidebar from '../../components/Sidebar';
 
 interface ProfilePage {
   // Define the props interface here if needed
+  children: React.ReactNode;
+
 }
 
 const Profile: NextPage<ProfilePage> = () => {

@@ -17,12 +17,12 @@ export const TasksContiner = styled.div<{ theme: Theme; isDraggingOver: boolean 
   flex-direction: column;
   flex-grow: 1;
   background-color: ${({ theme, isDraggingOver }) =>
-    isDraggingOver ? theme.colors.accent : 'lightblue'};
+    isDraggingOver ? theme.colors.accent.color : 'lightblue'};
 `;
 
 export const StatusContainer = styled.div<{ theme: Theme }>`
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.primary.color};
+  color: ${({ theme }) => theme.colors.secondary.color};
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
@@ -33,24 +33,24 @@ export const StatusContainer = styled.div<{ theme: Theme }>`
   flex-direction: column;
 `;
 
-export const StatusHeader = styled.div<{ theme: Theme }>`
+export const StatusHeader = styled.div`
   display: flex;
   margin-bottom: 16px;
   justify-content: space-between;
+  color: black;
 `;
 
-export const AddTaskButton = styled(Button)<{ theme: Theme }>`
-  background-color: #007bff;
+export const AddTaskButton = styled(Button)`
+  background-color: black;
   color: #fff;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
-  margin-bottom: 8px;
   cursor: pointer;
 `;
 
-export const ColorSeparatorBar = styled.div<{ theme: Theme }>`
+export const ColorSeparatorBar = styled.div`
   height: 4px;
-  background-color: #007bff;
+  background-color: black;
   margin-bottom: 16px;
 `;
