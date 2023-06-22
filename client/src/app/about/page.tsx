@@ -12,10 +12,7 @@ interface AboutPage {
 const SomeButton = styled.div`
   display: block;
   margin: 5px;
-  color: ${({ theme }) => {
-    console.log(theme);
-    return theme.colors.primary.color;
-  }};
+  color: ${({ theme }) => theme.colors.primary.color};
 `;
 
 const About: NextPage<AboutPage> = ({ children }) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronsLeft, ChevronsRight } from 'react-feather';
 
+import { Project } from '../../utils/Interfaces';
 import MenuSection from '../MenuSection';
 import ProjectsSection from '../ProjectsSection';
 import {
@@ -17,9 +18,17 @@ interface SidebarProps {
   projectName: string;
   toggleSidebar: () => void;
   isOpen?: boolean;
+  currentProject: Project;
+  setCurrentProject: React.Dispatch<React.SetStateAction<Project>>;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, projectName, toggleSidebar }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  isOpen = true,
+  projectName,
+  toggleSidebar,
+  currentProject,
+  setCurrentProject
+}) => {
   return (
     <SidebarContainer>
       <ProjectNameContainer>
@@ -34,7 +43,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, projectName, toggleSid
         </SectionContainer>
         <SeparatorBar />
         <SectionContainer>
-          <ProjectsSection isOpen={isOpen} />
+          <ProjectsSection
+            currentProject={currentProject}
+            setCurrentProject={setCurrentProject}
+            isOpen={isOpen}
+          />
         </SectionContainer>
       </SidebarMenuContainer>
     </SidebarContainer>

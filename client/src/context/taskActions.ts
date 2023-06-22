@@ -36,7 +36,7 @@ export interface AddTaskAction {
 
 export interface RemoveTaskAction {
   type: 'REMOVE_TASK';
-  payload: number;
+  payload: string;
 }
 
 export interface UpdateTaskAction {

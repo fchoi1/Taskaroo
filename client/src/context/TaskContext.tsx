@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
 // import { fetchTasks } from '../api/';
-import { Task } from '../utils/Interfaces';
+import { Project, Status, Task } from '../utils/Interfaces';
 import taskActions, { TaskAction, TasksState } from './taskActions';
+import generateTestData from './testData';
 
 interface TaskContextProps {
   tasks: Task[];
@@ -10,29 +11,16 @@ interface TaskContextProps {
   error: string | null;
   setTasks: (taskData: Task[]) => void;
   addTask: (task: Task) => void;
-  removeTask: (taskId: number) => void;
+  removeTask: (taskId: string) => void;
   updateTask: (task: Task) => void;
   setLoading: (isLoading: boolean) => void;
   setError: (error: string | null) => void;
+
+  statuses: Status[]; // Temp
+  projects: Project[]; // Temp
 }
 
-const initialTasks: TasksState = {
-  data: [
-    { id: 1, title: 'Task 1', statusId: 1 },
-    { id: 5, title: 'Task 5', statusId: 1 },
-    { id: 6, title: 'Task 6', statusId: 1 },
-    { id: 8, title: 'Task 8', statusId: 1 },
-    { id: 9, title: 'Task 9', statusId: 1 },
-    { id: 10, title: 'Task 10', statusId: 1 },
-    { id: 11, title: 'Task 11', statusId: 1 },
-    { id: 2, title: 'Task 2', statusId: 2 },
-    { id: 3, title: 'Task 3', statusId: 2 },
-    { id: 7, title: 'Task 7', statusId: 2 },
-    { id: 4, title: 'Task 4', statusId: 3 }
-  ],
-  isLoading: false,
-  error: null
-};
+const { initialTasks, statuses, projects } = generateTestData();
 
 const taskReducer = (state: TasksState, action: TaskAction): TasksState => {
   switch (action.type) {
@@ -107,7 +95,7 @@ const TaskProvider: React.FC<{ children: React.ReactNode; currentUser: string }>
     dispatch({ type: taskActions.ADD_TASK, payload: task });
   };
 
-  const removeTask = (taskId: number) => {
+  const removeTask = (taskId: string) => {
     dispatch({ type: taskActions.REMOVE_TASK, payload: taskId });
   };
 
@@ -132,7 +120,9 @@ const TaskProvider: React.FC<{ children: React.ReactNode; currentUser: string }>
     removeTask,
     updateTask,
     setLoading,
-    setError
+    setError,
+    statuses, //Temp
+    projects // Temp
   };
 
   return <TaskContext.Provider value={taskContextValue}>{children}</TaskContext.Provider>;

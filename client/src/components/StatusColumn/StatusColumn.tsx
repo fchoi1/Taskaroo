@@ -1,5 +1,6 @@
 import React from 'react';
 import { DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
+import { v4 as uuidv4 } from 'uuid';
 
 import BaseInterface from '../../BaseInterface';
 import { useTaskContext } from '../../context/taskContext';
@@ -26,7 +27,16 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
   const { id: statusId, name: statusName, step, tasks } = status;
 
   const { addTask } = useTaskContext();
-  const newTask = { id: 12, title: 'Task 12', statusId: 1 };
+  
+  // TODO: add  a modal to add new tasks
+  const newTask = {
+    id: uuidv4(),
+    title: 'Task 12',
+    statusId,
+    description: 'new description here',
+    priorityId: 1,
+    comments: []
+  };
 
   return (
     <StatusContainer>
@@ -39,8 +49,6 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
       <ColorSeparatorBar />
       <Droppable droppableId={`status-${step}`}>
         {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => {
-          console.log('Droppable rendering'); // Log the rendering of Droppable
-
           return (
             <TasksContiner
               {...provided.droppableProps}

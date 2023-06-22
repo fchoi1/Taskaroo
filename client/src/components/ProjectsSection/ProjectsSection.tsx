@@ -1,6 +1,7 @@
-import React, { createElement, useState } from 'react';
+import React, { createElement } from 'react';
 import { Circle, MoreHorizontal, PlusSquare, XCircle } from 'react-feather';
 
+import { useTaskContext } from '../../context/taskContext';
 import { Project } from '../../utils/Interfaces';
 import Button from '../common/Button';
 import {
@@ -12,18 +13,30 @@ import {
 
 interface ProjectsSectionProps {
   isOpen: boolean;
+  currentProject: Project;
+  setCurrentProject: React.Dispatch<React.SetStateAction<Project>>;
 }
 
 // api  or something to get projects list, useEffect and useState
-const Projects: Project[] = [
-  { name: 'Project 1', color: 'primary', id: 1 },
-  { name: 'Project 2', color: 'secondary', id: 2 },
-  { name: 'Project 3', color: 'accent', id: 3 }
-];
 
-const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isOpen }) => {
-  const [currentProject, setCurrentProject] = useState(Projects[0].id);
+const ProjectsSection: React.FC<ProjectsSectionProps> = ({
+  isOpen,
+  currentProject,
+  setCurrentProject
+}) => {
+  const { projects } = useTaskContext();
 
+  const saveDataToLocalStorage = (project: Project): void => {
+    localStorage.setItem('currentProject', JSON.stringify(project));
+    console.log(`currentProject saved to local storage `);
+  };
+
+  const onProjectSave = (project: Project) => {
+    setCurrentProject(project);
+    saveDataToLocalStorage(project);
+  };
+
+  console.log('projects', projects, 'currrent project', currentProject);
   return (
     <>
       <MyProjectHeaderContainer isOpen={isOpen}>
@@ -42,28 +55,35 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ isOpen }) => {
       </MyProjectHeaderContainer>
 
       <ProjectList>
-        {Projects &&
-          Projects.map(({ id, name, color }) => (
-            <ProjectListItem
-              key={id}
-              color={color}
-              isOpen={isOpen}
-              onClick={() => {
-                setCurrentProject(id);
-              }}
-            >
-              {isOpen ? (
-                <>
-                  {currentProject === id ? createElement(XCircle) : createElement(Circle)} {name}
-                </>
-              ) : (
-                <>
-                  {name.slice(0, 3)}
-                  {<MoreHorizontal />}
-                </>
-              )}
-            </ProjectListItem>
-          ))}
+        {projects &&
+          projects.map((project) => {
+            const { id, name, color } = project;
+            return (
+              <ProjectListItem
+                key={id}
+                color={color}
+                isOpen={isOpen}
+                onClick={() => {
+                  onProjectSave(project);
+                }}
+              >
+                {isOpen ? (
+                  <>
+                    {/* usually would be id, but it is rng rn so  set to name */}
+                    {currentProject.name === name
+                      ? createElement(XCircle)
+                      : createElement(Circle)}{' '}
+                    {name}
+                  </>
+                ) : (
+                  <>
+                    {name.slice(0, 3)}
+                    {<MoreHorizontal />}
+                  </>
+                )}
+              </ProjectListItem>
+            );
+          })}
 
         {/* Add more project items as needed */}
       </ProjectList>
