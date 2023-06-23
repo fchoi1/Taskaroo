@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import taskRoutes from './routes/taskRoutes';
 
 const app = express();
