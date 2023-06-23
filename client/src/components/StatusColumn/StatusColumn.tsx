@@ -27,7 +27,7 @@ const StatusColumn: React.FC<StatusColumnProps> = (props) => {
   const { id: statusId, name: statusName, step, tasks } = status;
 
   const { addTask } = useTaskContext();
-  
+
   // TODO: add  a modal to add new tasks
   const newTask = {
     id: uuidv4(),
