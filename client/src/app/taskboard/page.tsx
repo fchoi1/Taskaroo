@@ -52,13 +52,7 @@ const TaskBoard: NextPage<TaskBoardProps> = (props) => {
         <StatusesContainer>
           {statuses.map((status) => {
             const { id, name } = status;
-            return (
-              <StatusColumn
-                key={id}
-                showAddTaskButton={name === 'To do'}
-                status={status}
-              />
-            );
+            return <StatusColumn key={id} showAddTaskButton={name === 'To do'} status={status} />;
           })}
         </StatusesContainer>
       </DragDropContext>
