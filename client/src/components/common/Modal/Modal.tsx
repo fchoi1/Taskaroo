@@ -1,9 +1,8 @@
 import React from 'react';
 
-import BaseInterface from '../../../BaseInterface';
 import { ModalCloseButton, ModalContainer, ModalContent, ModalTitle } from './Modal.styles';
 
-interface ModalProps extends BaseInterface {
+interface ModalProps {
   onClose?: () => void;
   children?: React.ReactNode;
   title: string;
