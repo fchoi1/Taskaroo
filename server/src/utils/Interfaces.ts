@@ -16,7 +16,7 @@ export interface Status {
   id: string;
   name: string;
   step: number;
-  tasks: Task[];
+  tasks?: Task[];
 }
 
 export interface Project {
