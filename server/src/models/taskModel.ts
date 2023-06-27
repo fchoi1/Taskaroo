@@ -1,11 +1,5 @@
 import db from '../db';
-
-interface Task {
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-}
+import { Task } from '../utils/Interfaces';
 
 const getAllTasks = async (): Promise<Task[]> => {
   return db('tasks').select('*');
@@ -14,6 +8,6 @@ const getAllTasks = async (): Promise<Task[]> => {
 // Implement other database operations as needed
 
 export default {
-  getAllTasks,
+  getAllTasks
   // Export other functions for task operations
 };
