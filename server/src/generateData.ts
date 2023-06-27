@@ -37,6 +37,7 @@ export async function seedProject(): Promise<void> {
   await knex('projects').insert(projects);
 }
 
+// TODO: add proper seeding and mapping of data
 (async () => {
   try {
     console.log('Deleting tables');

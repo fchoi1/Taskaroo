@@ -1,13 +1,27 @@
-import db from '../db';
-import { Task } from '../utils/Interfaces';
+import { Knex } from 'knex';
 
-const getAllTasks = async (): Promise<Task[]> => {
-  return db('tasks').select('*');
+interface TaskModel {
+  id: string;
+  title: string;
+  statusId: string;
+  description: string;
+  priorityId: number;
+}
+
+const TaskSchema = {
+  id: 'uuid',
+  title: 'string',
+  statusId: 'string',
+  description: 'string',
+  priorityId: 'integer'
 };
 
-// Implement other database operations as needed
-
-export default {
-  getAllTasks
-  // Export other functions for task operations
+const createTask = async (knex: Knex, task: TaskModel): Promise<void> => {
+  await knex('tasks').insert(task);
 };
+
+const getTasks = async (knex: Knex): Promise<TaskModel[]> => {
+  return knex('tasks').select('*');
+};
+
+export { TaskModel, TaskSchema, createTask, getTasks };
