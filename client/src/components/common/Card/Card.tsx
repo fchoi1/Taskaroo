@@ -1,11 +1,10 @@
 import React from 'react';
 import { Draggable, DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 
-import BaseInterface from '../../../BaseInterface';
 import { Task } from '../../../utils/Interfaces';
 import { CardContainer, CardContent, CardDescription, CardFooter, CardTitle } from './Card.styles';
 
-interface CardProps extends BaseInterface {
+interface CardProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   children?: React.ReactNode;
   task: Task;

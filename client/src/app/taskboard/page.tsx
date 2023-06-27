@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
-import BaseInterface from '../../BaseInterface';
 import ProjectHeader from '../../components/CurrentProjectHeader';
 import Menu from '../../components/Menu';
 import StatusColumn from '../../components/StatusColumn';
@@ -13,7 +12,7 @@ import { Project, Status } from '../../utils/Interfaces';
 import { StatusesContainer } from './Taskboard.styles';
 import { assignTasksToStatuses, handleDragEnd } from './taskboardUtils';
 
-interface TaskBoardProps extends BaseInterface {
+interface TaskBoardProps {
   // Define the props interface here if needed
   children: React.ReactNode;
 }
@@ -50,7 +49,6 @@ const TaskBoard: NextPage<TaskBoardProps> = (props) => {
         onDragEnd={(result: DropResult) => handleDragEnd(result, statuses, setStatuses)}
       >
         <ProjectHeader color={currentProject.color} currentProject={currentProject} />
-
         <StatusesContainer>
           {statuses.map((status) => {
             const { id, name } = status;

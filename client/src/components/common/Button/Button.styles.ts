@@ -2,12 +2,15 @@ import styled from 'styled-components';
 
 import { Theme } from '../../../theme';
 
-export const StyledButton = styled.button<{
+export const StyledButton = styled.button.attrs((props) => ({
+  type: props.type || 'button',
+}))<{
   theme: Theme;
   hover?: boolean;
   active?: boolean;
   focus?: boolean;
   color?: string;
+  type?: string;
 }>`
   background-color: ${({ theme, color }) =>
     color ? theme.colors[color]?.color : theme.colors.primary.color};

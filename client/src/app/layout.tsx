@@ -9,7 +9,7 @@ import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
+export const someMetadata = {
   title: 'Taskaroo',
   description: 'simplify tasks, simplify your life'
 };
