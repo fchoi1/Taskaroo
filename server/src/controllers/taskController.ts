@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import taskModel from '../models/taskModel';
+import taskService from '../service/taskService';
 
 const getAllTasks = async (req: Request, res: Response) => {
   try {
-    const tasks = await taskModel.getAllTasks();
+    const tasks = await taskService.getTasks();
     res.json(tasks);
   } catch (error) {
     res.status(500).json({ error: 'Failed to retrieve tasks' });
@@ -13,6 +13,6 @@ const getAllTasks = async (req: Request, res: Response) => {
 // Implement other controller functions for task operations
 
 export default {
-  getAllTasks,
+  getAllTasks
   // Export other functions for task operations
 };
