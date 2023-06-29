@@ -1,7 +1,7 @@
 import React from 'react';
 import { Draggable, DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 
-import { Task } from '../../../utils/Interfaces';
+import type { Task } from '../../../utils/Interfaces';
 import { CardContainer, CardContent, CardDescription, CardFooter, CardTitle } from './Card.styles';
 
 interface CardProps {

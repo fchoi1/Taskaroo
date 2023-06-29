@@ -1,4 +1,5 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
+import BaseModel from './BaseModel';
 
 interface ProjectModel {
   id: string;
@@ -12,12 +13,8 @@ const ProjectSchema = {
   color: 'string'
 };
 
-const createProject = async (knex: Knex, project: ProjectModel): Promise<void> => {
-  await knex('projects').insert(project);
-};
+class ProjectModel extends BaseModel {}
 
-const getProjects = async (knex: Knex): Promise<ProjectModel[]> => {
-  return knex('projects').select('*');
-};
 
-export { ProjectModel, ProjectSchema, createProject, getProjects };
+
+export { ProjectModel, ProjectSchema };

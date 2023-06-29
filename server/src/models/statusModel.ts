@@ -1,10 +1,4 @@
-import { Knex } from 'knex';
-
-interface StatusModel {
-  id: string;
-  name: string;
-  step: number;
-}
+import BaseModel from './BaseModel';
 
 const StatusSchema = {
   id: 'primary',
@@ -12,12 +6,21 @@ const StatusSchema = {
   step: 'integer'
 };
 
-const createStatus = async (knex: Knex, status: StatusModel): Promise<void> => {
-  await knex('statuses').insert(status);
-};
+class StatusModel extends BaseModel {
+  id!: string;
+  name!: string;
+  step!: number;
 
-const getStatuses = async (knex: Knex): Promise<StatusModel[]> => {
-  return knex('statuses').select('*');
-};
+  static get tableName() {
+    return 'tasks';
+  }
 
-export { StatusModel, StatusSchema, createStatus, getStatuses };
+  static get jsonSchema() {
+    return {
+      // Define your table schema here
+      // ...
+    };
+  }
+}
+
+export { StatusModel, StatusSchema };

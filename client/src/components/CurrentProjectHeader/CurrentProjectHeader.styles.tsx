@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../theme';
-
+import type { Theme } from '../../theme';
 
 export const CurrentProjectNameContainer = styled.div<{ theme: Theme }>`
-display: flex;  
+  display: flex;
   background-color: #f2f2f2;
   padding: 10px;
   border-radius: 4px;

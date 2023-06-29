@@ -2,7 +2,7 @@ import React, { createElement } from 'react';
 import { Circle, MoreHorizontal, PlusSquare, XCircle } from 'react-feather';
 
 import { useTaskContext } from '../../context/taskContext';
-import { Project } from '../../utils/Interfaces';
+import type { Project } from '../../utils/Interfaces';
 import Button from '../common/Button';
 import {
   MyProjectHeader,

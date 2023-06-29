@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
 // import { fetchTasks } from '../api/';
-import { Project, Status, Task } from '../utils/Interfaces';
+import type { Project, Status, Task } from '../utils/Interfaces';
 import taskActions, { TaskAction, TasksState } from './taskActions';
 import generateTestData from './testData';
 

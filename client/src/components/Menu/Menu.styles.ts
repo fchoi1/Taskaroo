@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../theme';
+import type { Theme } from '../../theme';
 
 export const MenuContainer = styled.div<{ theme: Theme; isOpen: boolean }>`
   display: grid;

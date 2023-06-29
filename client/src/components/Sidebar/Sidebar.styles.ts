@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../theme';
+import type { Theme } from '../../theme';
 
 export const SidebarContainer = styled.div<{ theme: Theme }>`
   background-color: ${({ theme }) => theme.colors.background.color};

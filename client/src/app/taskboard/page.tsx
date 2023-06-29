@@ -8,7 +8,7 @@ import ProjectHeader from '../../components/CurrentProjectHeader';
 import Menu from '../../components/Menu';
 import StatusColumn from '../../components/StatusColumn';
 import { useTaskContext } from '../../context/taskContext';
-import { Project, Status } from '../../utils/Interfaces';
+import type { Project, Status } from '../../utils/Interfaces';
 import { StatusesContainer } from './Taskboard.styles';
 import { assignTasksToStatuses, handleDragEnd } from './taskboardUtils';
 

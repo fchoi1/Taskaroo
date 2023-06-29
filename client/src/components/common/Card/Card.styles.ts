@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../../theme';
+import type { Theme } from '../../../theme';
 
 export const CardContainer = styled.div<{ theme: Theme; isDragging: boolean }>`
   background-color: ${({ theme, isDragging }) =>

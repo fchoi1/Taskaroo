@@ -1,4 +1,5 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
+import BaseModel from './BaseModel';
 
 interface CommentModel {
   id: string;

@@ -1,9 +1,10 @@
 import * as dotenv from 'dotenv';
-import { Knex, knex } from 'knex';
+import { knex, type Knex } from 'knex';
+import { Model } from 'objection';
 
 dotenv.config();
 
-const dbConfig: Knex.Config = {
+export const dbConfig: Knex.Config = {
   client: 'pg',
   connection: {
     host: process.env.DB_HOST || 'localhost',
@@ -15,5 +16,7 @@ const dbConfig: Knex.Config = {
 };
 
 const db = knex(dbConfig);
+
+Model.knex(db);
 
 export default db;

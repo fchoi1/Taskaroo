@@ -1,4 +1,10 @@
-export interface Task {
+export interface BaseModelInterface {
+  createdBy?: string;
+  createdAt?: Date;
+  updatedBy?: string;
+  updatedAt?: Date;
+}
+export interface Task extends BaseModelInterface {
   id: string;
   title: string;
   statusId: string;
@@ -7,19 +13,19 @@ export interface Task {
   comments?: unknown[];
 }
 
-export interface Comment {
+export interface Comment extends BaseModelInterface {
   id: string;
   taskId: number;
 }
 
-export interface Status {
+export interface Status extends BaseModelInterface {
   id: string;
   name: string;
   step: number;
   tasks?: Task[];
 }
 
-export interface Project {
+export interface Project extends BaseModelInterface {
   name: string;
   color: string;
   id: string;

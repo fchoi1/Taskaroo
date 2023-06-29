@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Project } from '../../utils/Interfaces';
+import type { Project } from '../../utils/Interfaces';
 import Navbar from '../Navbar';
 import Sidebar from '../Sidebar';
 import { MainContent, MenuContainer, NavBarGrid, SidebarGrid } from './Menu.styles';

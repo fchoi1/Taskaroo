@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
 
-import { Status } from '../../utils/Interfaces';
+import type { Status } from '../../utils/Interfaces';
 import NewTaskModal from '../NewTaskModal';
 import Card from '../common/Card';
 import { StrictModeDroppable as Droppable } from '../common/Droppable';

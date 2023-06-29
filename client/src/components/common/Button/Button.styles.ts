@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../../theme';
+import type { Theme } from '../../../theme';
 
 export const StyledButton = styled.button.attrs((props) => ({
-  type: props.type || 'button',
+  type: props.type || 'button'
 }))<{
   theme: Theme;
   hover?: boolean;

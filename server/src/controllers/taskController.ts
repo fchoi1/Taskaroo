@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import taskService from '../service/taskService';
 
 const getAllTasks = async (req: Request, res: Response) => {

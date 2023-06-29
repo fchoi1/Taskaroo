@@ -1,6 +1,6 @@
 import { DropResult } from 'react-beautiful-dnd';
 
-import { Status, Task } from '../../utils/Interfaces';
+import type { Status, Task } from '../../utils/Interfaces';
 
 export const handleDragEnd = (
   result: DropResult,

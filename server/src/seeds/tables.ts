@@ -1,4 +1,4 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 import knex from '../db';
 import { CommentSchema, ProjectSchema, StatusSchema, TaskSchema } from '../models/schema';
 

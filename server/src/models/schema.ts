@@ -1,4 +1,4 @@
-export { CommentSchema } from './commentModel';
-export { ProjectSchema } from './projectModel';
-export { StatusSchema } from './statusModel';
-export { TaskSchema } from './taskModel';
+export { CommentSchema } from './CommentModel';
+export { ProjectSchema } from './ProjectModel';
+export { StatusSchema } from './StatusModel';
+export { TaskSchema } from './TaskModel';
