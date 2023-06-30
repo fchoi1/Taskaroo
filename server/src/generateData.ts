@@ -1,5 +1,5 @@
 import knex from './db';
-import { createTables, deleteTables } from './seeds/tables';
+import { createTables, deleteTables } from './seeds-manual/tables';
 import type { Project, Status, Task } from './utils/Interfaces';
 
 import { faker } from '@faker-js/faker';
