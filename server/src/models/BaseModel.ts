@@ -10,12 +10,12 @@ class BaseModel extends Model {
   }
 
   static modifiers: Modifiers = {
-    $beforeInsert(context) {
-      const ctx: any = context;
-      this.createdBy = ctx.user.id ? ctx.user.id : 'system';
+    $beforeInsert(context: any) {
+      this.createdBy = context.user.id ? context.user.id : 'system';
       this.createdAt = new Date();
     },
-    $beforeUpdate(opt, context) {
+    $beforeUpdate(opt, context: any) {
+      this.updatedBy = context.user.id ? context.user.id : 'system';
       this.updatedAt = new Date();
     }
   };

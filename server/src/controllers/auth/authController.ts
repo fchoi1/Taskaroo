@@ -1,27 +1,28 @@
 import type { Request, Response } from 'express';
-import defaultController from './authController';
-import googleContoller from './googleContoller';
 
-const login = (req: Request, res: Response) => {
-  if (req.body.authType === 'google') {
-    googleContoller.loginGoogle(req, res);
-  } else {
-    defaultController.login(req, res);
-  }
-  console.log('jwt');
-  res.json({ message: 'login successful' });
+const login = async (req: Request, res: Response) => {
+  console.log('Login');
+  req.session.user = { id: 'user-id', username: 'username', email: 'email@email.com' };
+  res.sendStatus(200);
 };
 
 // Implement other controller functions for comment operations
 
 const register = (req: Request, res: Response) => {
   // Handle the registration logic here
+  // Create user
 };
 
 const logout = (req: Request, res: Response) => {
   // Handle the logout logic here
-  console.log('logout');
-  res.json();
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      res.sendStatus(500);
+    } else {
+      res.sendStatus(200);
+    }
+  });
 };
 
 export default {

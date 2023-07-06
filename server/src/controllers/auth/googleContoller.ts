@@ -7,15 +7,17 @@ const loginGoogle = async (req: Request, res: Response) => {
 
 // Implement other controller functions for comment operations
 
-export const register = (req: Request, res: Response) => {
+const register = async (req: Request, res: Response) => {
   // Handle the registration logic here
 };
 
-export const logout = (req: Request, res: Response) => {
+const logoutGoogle = async (req: Request, res: Response) => {
   // Handle the logout logic here
 };
 
 export default {
-  loginGoogle
+  loginGoogle,
+  register,
+  logoutGoogle
   // Export other functions for comment operations
 };

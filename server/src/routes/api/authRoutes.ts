@@ -1,9 +1,11 @@
 import * as express from 'express';
 
-import { googleContoller } from '../../controllers';
+import { authController } from '../../controllers';
 
 const router = express.Router();
 
-router.post('/auth/apple', googleContoller.loginGoogle);
+router.post('/login', authController.login);
+
+router.post('/logout', authController.logout);
 
 export default router;

@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import type { Knex } from 'knex';
+import { ProjectModel, StatusModel, TaskModel } from '../../models';
 
 export async function seed(knex: Knex): Promise<void> {
   const tasks = Array.from({ length: 10 }).map(() => ({
@@ -22,11 +23,11 @@ export async function seed(knex: Knex): Promise<void> {
     color: faker.color.human()
   }));
 
-  await knex('tasks').del();
-  await knex('statuses').del();
-  await knex('projects').del();
+  await knex<TaskModel>('tasks').del();
+  await knex<StatusModel>('statuses').del();
+  await knex<ProjectModel>('projects').del();
 
-  await knex('tasks').insert(tasks);
-  await knex('statuses').insert(statuses);
-  await knex('projects').insert(projects);
+  await TaskModel.query(knex).insert(tasks);
+  await StatusModel.query(knex).insert(statuses);
+  await ProjectModel.query(knex).insert(projects);
 }

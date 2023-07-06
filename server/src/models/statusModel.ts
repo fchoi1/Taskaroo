@@ -1,18 +1,12 @@
 import BaseModel from './BaseModel';
 
-const StatusSchema = {
-  id: 'primary',
-  name: 'string',
-  step: 'integer'
-};
-
 class StatusModel extends BaseModel {
   id!: string;
   name!: string;
   step!: number;
 
   static get tableName() {
-    return 'tasks';
+    return 'statuses';
   }
 
   static get jsonSchema() {
@@ -23,4 +17,4 @@ class StatusModel extends BaseModel {
   }
 }
 
-export { StatusModel, StatusSchema };
+export default StatusModel;

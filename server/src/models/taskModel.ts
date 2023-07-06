@@ -1,13 +1,5 @@
 import BaseModel from './BaseModel';
 
-const TaskSchema = {
-  id: 'uuid',
-  title: 'string',
-  statusId: 'string',
-  description: 'string',
-  priorityId: 'integer'
-};
-
 class TaskModel extends BaseModel {
   id!: string;
   title!: string;
@@ -27,5 +19,4 @@ class TaskModel extends BaseModel {
   }
 }
 
-export { TaskModel, TaskSchema };
-
+export default TaskModel;

@@ -1,8 +1,8 @@
 export interface BaseModelInterface {
-  createdBy?: string;
-  createdAt?: Date;
-  updatedBy?: string;
-  updatedAt?: Date;
+  createdBy: string;
+  createdAt: Date;
+  updatedBy: string;
+  updatedAt: Date;
 }
 export interface Task extends BaseModelInterface {
   id: string;
@@ -30,3 +30,12 @@ export interface Project extends BaseModelInterface {
   color: string;
   id: string;
 }
+
+export interface SessionUser {
+  id: string;
+  username: string;
+  email: string;
+}
+
+
+

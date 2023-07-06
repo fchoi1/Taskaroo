@@ -10,17 +10,18 @@
     "start": "ts-node src/server.ts",
     "migrate": "knex migrate:latest --env=development",
     "migrate:rollback": "knex migrate:rollback --env=development",
-    "seed-script": "ts-node src/generateData.ts",
     "seed": "knex seed:run --env=development",
-    "refresh": "npm run migrate && npm run seed"
+    "refresh": "npm run migrate:rollback && npm run migrate && npm run seed"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-session-knex": "^3.0.1",
     "dotenv": "^16.3.1",
     "eslint": "^8.42.0",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "faker": "^6.6.6",
     "jsonwebtoken": "^9.0.0",
     "jwks-rsa": "^3.0.1",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
     "@types/express": "^4.17.17",
+    "@types/express-session": "^1.17.7",
     "@types/knex": "^0.16.1",
     "@types/pg": "^8.10.2"
   }

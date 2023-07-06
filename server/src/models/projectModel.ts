@@ -1,20 +1,20 @@
-import type { Knex } from 'knex';
 import BaseModel from './BaseModel';
 
-interface ProjectModel {
-  id: string;
-  name: string;
-  color: string;
+class ProjectModel extends BaseModel {
+  id!: string;
+  name!: string;
+  color!: string;
+
+  static get tableName() {
+    return 'projects';
+  }
+
+  static get jsonSchema() {
+    return {
+      // Define your table schema here
+      // ...
+    };
+  }
 }
 
-const ProjectSchema = {
-  id: 'primary',
-  name: 'string',
-  color: 'string'
-};
-
-class ProjectModel extends BaseModel {}
-
-
-
-export { ProjectModel, ProjectSchema };
+export default ProjectModel;

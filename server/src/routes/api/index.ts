@@ -4,6 +4,7 @@ import commentRoutes from './commentRoutes';
 import projectRoutes from './projectRoutes';
 import statusRoutes from './statusRoutes';
 import taskRoutes from './taskRoutes';
+import authRoutes from './authRoutes';
 
 const apiRouter: Router = Router();
 
@@ -11,6 +12,7 @@ apiRouter.use('/task', taskRoutes);
 apiRouter.use('/status', statusRoutes);
 apiRouter.use('/project', projectRoutes);
 apiRouter.use('/comment', commentRoutes);
+apiRouter.use('/auth', authRoutes);
 
 // Catch-all route for undefined routes
 apiRouter.use((req: Request, res: Response) => {
