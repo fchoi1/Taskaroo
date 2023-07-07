@@ -2,26 +2,28 @@ import type { Request, Response } from 'express';
 import defaultController from './authController';
 import googleContoller from './googleContoller';
 
-const login = (req: Request, res: Response) => {
-  if (req.body.authType === 'google') {
-    googleContoller.loginGoogle(req, res);
-  } else {
-    defaultController.login(req, res);
+const getAuthController = (authType: string) => {
+  switch (authType) {
+    case 'google':
+      return googleContoller;
+    default:
+      return defaultController;
   }
-  console.log('jwt');
-  res.json({ message: 'login successful' });
 };
 
-// Implement other controller functions for comment operations
+const login = (req: Request, res: Response) => {
+  const authController = getAuthController(req.body?.authType);
+  authController.login(req, res);
+};
 
 const register = (req: Request, res: Response) => {
-  // Handle the registration logic here
+  const authController = getAuthController(req.body?.authType);
+  authController.register(req, res);
 };
 
 const logout = (req: Request, res: Response) => {
-  // Handle the logout logic here
-  console.log('logout');
-  res.json();
+  const authController = getAuthController(req.body?.authType);
+  authController.logout(req, res);
 };
 
 export default {

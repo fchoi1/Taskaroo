@@ -9,6 +9,7 @@ import { SessionUser } from './utils/Interfaces';
 declare module 'express-session' {
   export interface SessionData {
     user: SessionUser;
+    loggedIn: boolean;
   }
 }
 
@@ -30,6 +31,8 @@ const sess = {
   cookie: { secure: false }
 };
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(session(sess));
 app.use(routes);
 

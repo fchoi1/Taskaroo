@@ -12,6 +12,7 @@ export async function up(knex: Knex) {
   await knex.schema.dropTableIfExists('statuses');
   await knex.schema.dropTableIfExists('comments');
   await knex.schema.dropTableIfExists('projects');
+  await knex.schema.dropTableIfExists('users');
 
   await knex.schema.createTable('tasks', function (table) {
     table.string('id').primary();
@@ -47,12 +48,15 @@ export async function up(knex: Knex) {
     // Define other columns as needed
   });
 
-  // await knex.schema.createTable('sessions', (table) => {
-  //   table.string('sid').primary();
-  //   table.json('sess').notNullable();
-  //   table.timestamp('expired').notNullable();
-  //   addCommonColumns(table, knex);
-  // });
+  await knex.schema.createTable('users', (table) => {
+    table.string('id').primary();
+    table.string('nick');
+    table.string('email').notNullable();
+    table.string('firstName').notNullable();
+    table.string('lastName').notNullable();
+    table.string('password').notNullable();
+    addCommonColumns(table, knex);
+  });
 }
 
 export async function down(knex: Knex) {
@@ -60,5 +64,6 @@ export async function down(knex: Knex) {
   await knex.schema.dropTableIfExists('statuses');
   await knex.schema.dropTableIfExists('comments');
   await knex.schema.dropTableIfExists('projects');
+  await knex.schema.dropTableIfExists('users');
   await knex.schema.dropTableIfExists('sessions');
 }

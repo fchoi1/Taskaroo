@@ -31,11 +31,17 @@ export interface Project extends BaseModelInterface {
   id: string;
 }
 
-export interface SessionUser {
+export interface User extends BaseModelInterface {
   id: string;
-  username: string;
+  nick: string;
   email: string;
+  firstname: string;
+  lastname: string;
+  password: string;
 }
 
-
-
+export interface SessionUser {
+  id: string;
+  email: string;
+  username?: string;
+}

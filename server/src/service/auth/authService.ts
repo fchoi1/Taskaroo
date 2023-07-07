@@ -1,12 +1,26 @@
-export const authenticateUser = (username: string, password: string) => {
-  // Authenticate the user here (e.g., compare the password with the hashed password in the database)
+import { UserModel } from '../../models';
+
+export interface NewUser {
+  nick?: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+}
+
+export const authenticateUser = async (email: string, password: string) => {
+  // Retrieve the user by username from the database
+  const user = await UserModel.query().findOne({ email });
+
+  if (user) {
+    const isPasswordValid = await user.comparePasswords(password);
+    return isPasswordValid ? { isAuthenticated: true, user } : { isAuthenticated: false };
+  }
+
+  return { isAuthenticated: false };
 };
 
-export const createUser = (username: string, password: string) => {
-  // Create a new user record here (e.g., store the hashed password in the database)
+export const createUser = async (user: NewUser) => {
+  // Create a new user record in the database
+  await UserModel.query().insert(user);
 };
-
-export const logoutUser = () => {
-  // Logout the user (e.g., destroy the session, clear the authentication token)
-};
-

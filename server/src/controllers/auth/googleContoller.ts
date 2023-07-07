@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
-const loginGoogle = async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response) => {
   console.log(jwt);
 };
 
@@ -11,13 +11,13 @@ const register = async (req: Request, res: Response) => {
   // Handle the registration logic here
 };
 
-const logoutGoogle = async (req: Request, res: Response) => {
+const logout = async (req: Request, res: Response) => {
   // Handle the logout logic here
 };
 
 export default {
-  loginGoogle,
+  login,
   register,
-  logoutGoogle
+  logout
   // Export other functions for comment operations
 };
