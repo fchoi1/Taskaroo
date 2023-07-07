@@ -10,7 +10,6 @@ import StatusColumn from '../../components/StatusColumn';
 import Container from '../../components/common/Containers';
 import { useTaskContext } from '../../context/taskContext';
 import type { Project, Status } from '../../utils/Interfaces';
-import { StatusesContainer } from './Taskboard.styles';
 import { assignTasksToStatuses, handleDragEnd } from './taskboardUtils';
 
 interface TaskBoardProps {
