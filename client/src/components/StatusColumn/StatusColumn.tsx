@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
 
 import type { Status } from '../../utils/Interfaces';
@@ -15,12 +15,12 @@ import {
 } from './StatusColumn.styles';
 
 interface StatusColumnProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   showAddTaskButton?: boolean;
   status: Status;
 }
 
-const StatusColumn: React.FC<StatusColumnProps> = (props) => {
+const StatusColumn: FC<StatusColumnProps> = (props) => {
   const { status, showAddTaskButton = false } = props;
   const { id: statusId, name: statusName, step, tasks } = status;
 

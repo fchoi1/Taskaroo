@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { FC } from 'react';
 
 import Button from '../components/common/Button';
 import {
@@ -16,7 +16,7 @@ import {
   StyledHome
 } from './styledComponents';
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   return (
     <StyledHome>
       <Main>

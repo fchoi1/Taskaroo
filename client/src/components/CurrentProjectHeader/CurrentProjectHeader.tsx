@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Edit3, Link2 } from 'react-feather';
 
 import type { Project } from '../../utils/Interfaces';
@@ -9,7 +9,7 @@ interface ProjectHeaderProps {
   color: string;
 }
 
-const ProjectHeader: React.FC<ProjectHeaderProps> = ({ color, currentProject }) => {
+const ProjectHeader: FC<ProjectHeaderProps> = ({ color, currentProject }) => {
   return (
     <CurrentProjectNameContainer>
       <CurrentProjectName color={color}>{currentProject.name}</CurrentProjectName>

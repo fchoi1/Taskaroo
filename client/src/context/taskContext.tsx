@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import { FC, ReactNode, createContext, useContext, useEffect, useReducer } from 'react';
 
 // import { fetchTasks } from '../api/';
 import type { Project, Status, Task } from '../utils/Interfaces';
@@ -75,7 +75,7 @@ function fetchInitialTasks(currentUser: string) {
   return initialTasks;
 }
 
-const TaskProvider: React.FC<{ children: React.ReactNode; currentUser: string }> = ({
+const TaskProvider: FC<{ children: ReactNode; currentUser: string }> = ({
   children,
   currentUser
 }) => {

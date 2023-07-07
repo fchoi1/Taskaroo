@@ -1,8 +1,9 @@
 import { NextPage } from 'next';
+import { ReactNode } from 'react';
 
 interface ProfilePage {
   // Define the props interface here if needed
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const Profile: NextPage<ProfilePage> = () => {

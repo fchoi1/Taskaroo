@@ -2,10 +2,11 @@
 
 import { NextPage } from 'next';
 import Link from 'next/link';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface AboutPage {
-  children: React.ReactNode;
+  children: ReactNode;
   // Define the props interface here if needed
 }
 

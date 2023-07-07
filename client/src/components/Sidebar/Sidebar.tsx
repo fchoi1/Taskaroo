@@ -1,4 +1,4 @@
-import React from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { ChevronsLeft, ChevronsRight } from 'react-feather';
 
 import type { Project } from '../../utils/Interfaces';
@@ -19,10 +19,10 @@ interface SidebarProps {
   toggleSidebar: () => void;
   isOpen?: boolean;
   currentProject: Project;
-  setCurrentProject: React.Dispatch<React.SetStateAction<Project>>;
+  setCurrentProject: Dispatch<SetStateAction<Project>>;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({
+const Sidebar: FC<SidebarProps> = ({
   isOpen = true,
   projectName,
   toggleSidebar,

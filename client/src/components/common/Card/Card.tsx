@@ -1,17 +1,17 @@
-import React from 'react';
+import { FC, MouseEventHandler, ReactNode } from 'react';
 import { Draggable, DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 
 import type { Task } from '../../../utils/Interfaces';
 import { CardContainer, CardContent, CardDescription, CardFooter, CardTitle } from './Card.styles';
 
 interface CardProps {
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  children?: React.ReactNode;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+  children?: ReactNode;
   task: Task;
   index: number;
 }
 
-const Card: React.FC<CardProps> = ({ onClick, children, task, index }) => {
+const Card: FC<CardProps> = ({ onClick, children, task, index }) => {
   const { title, id } = task;
 
   return (

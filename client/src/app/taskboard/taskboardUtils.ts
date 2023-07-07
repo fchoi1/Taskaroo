@@ -1,11 +1,12 @@
 import { DropResult } from 'react-beautiful-dnd';
 
+import { Dispatch, SetStateAction } from 'react';
 import type { Status, Task } from '../../utils/Interfaces';
 
 export const handleDragEnd = (
   result: DropResult,
   statuses: Status[],
-  setStatuses: React.Dispatch<React.SetStateAction<Status[]>>
+  setStatuses: Dispatch<SetStateAction<Status[]>>
 ) => {
   if (!result.destination) return;
   const { source, destination } = result;

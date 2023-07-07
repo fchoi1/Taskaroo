@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ChangeEvent, FC, FormEvent, ReactNode, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useTaskContext } from '../../context/taskContext';
@@ -13,7 +13,7 @@ import {
 
 interface ModalProps {
   onClose?: () => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
   statusId: string;
 }
 
@@ -21,17 +21,17 @@ interface NewTask {
   name: string;
 }
 
-const NewTaskModal: React.FC<ModalProps> = ({ onClose, statusId }) => {
+const NewTaskModal: FC<ModalProps> = ({ onClose, statusId }) => {
   const [formData, setFormData] = useState<NewTask>({ name: '' });
 
   const { addTask } = useTaskContext();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newTask = {

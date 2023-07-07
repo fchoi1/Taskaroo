@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import { Dispatch, FC, SetStateAction, createElement } from 'react';
 import { Circle, MoreHorizontal, PlusSquare, XCircle } from 'react-feather';
 
 import { useTaskContext } from '../../context/taskContext';
@@ -14,12 +14,12 @@ import {
 interface ProjectsSectionProps {
   isOpen: boolean;
   currentProject: Project;
-  setCurrentProject: React.Dispatch<React.SetStateAction<Project>>;
+  setCurrentProject: Dispatch<SetStateAction<Project>>;
 }
 
 // api  or something to get projects list, useEffect and useState
 
-const ProjectsSection: React.FC<ProjectsSectionProps> = ({
+const ProjectsSection: FC<ProjectsSectionProps> = ({
   isOpen,
   currentProject,
   setCurrentProject
