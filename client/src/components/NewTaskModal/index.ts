@@ -1,3 +1,3 @@
-import NewTaskModal from "./NewTaskModal";
+import NewTaskModal from './NewTaskModal';
 
-export default NewTaskModal 
+export default NewTaskModal;

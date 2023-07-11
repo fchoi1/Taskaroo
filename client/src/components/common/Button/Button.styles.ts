@@ -25,7 +25,7 @@ export const StyledButton = styled.button.attrs((props) => ({
   transition: background-color 0.3s ease;
 
   ${({ theme, hover, color }) => {
-    if (hover === false) return
+    if (hover === false) return;
     const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
     return `&:hover {
       background-color: ${theme.hoverColor(colorType, -10)};
@@ -33,16 +33,15 @@ export const StyledButton = styled.button.attrs((props) => ({
   }}
 
   ${({ theme, active, color }) => {
-    if (active === false) return
+    if (active === false) return;
     const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
     return `&:active {
       background-color: ${theme.hoverColor(colorType, -15)};
     }`;
-    
   }}
 
   ${({ theme, focus, color }) => {
-    if (focus === false) return
+    if (focus === false) return;
     const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
     return `&:focus {
       outline: none;

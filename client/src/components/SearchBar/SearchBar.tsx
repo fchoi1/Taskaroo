@@ -1,10 +1,7 @@
 import { ChangeEvent, FC } from 'react';
 import { Search } from 'react-feather';
 
-
-
 import { SearchBarWrapper, SearchIconContainer, SearchInput } from './SearchBar.styles';
-
 
 type SearchBarProps = {
   placeholder: string;

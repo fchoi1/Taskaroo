@@ -1,3 +1,3 @@
 import { Container, Grid } from './Containers';
 
-export { Container as default, Grid };
+export { Grid, Container as default };

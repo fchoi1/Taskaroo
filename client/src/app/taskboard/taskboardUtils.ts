@@ -1,6 +1,6 @@
+import { Dispatch, SetStateAction } from 'react';
 import { DropResult } from 'react-beautiful-dnd';
 
-import { Dispatch, SetStateAction } from 'react';
 import type { Status, Task } from '../../utils/Interfaces';
 
 export const handleDragEnd = (

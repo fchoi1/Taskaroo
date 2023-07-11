@@ -14,7 +14,7 @@ declare module 'express-session' {
 }
 
 const app = express();
-const port = 8001;
+const port = 3001;
 
 const KnexSessionStore = KnexSessionStoreConstructor(session);
 const sessionStore = new KnexSessionStore({

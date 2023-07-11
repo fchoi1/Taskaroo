@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import type { Theme } from '../../theme';
 
 export const CurrentProjectNameWrapper = styled.div<{ theme: Theme }>`

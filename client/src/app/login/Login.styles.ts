@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Container from '../../components/common/Containers'
+
+import Container from '../../components/common/Containers';
 
 // Define the styled components
 export const LoginContainer = styled(Container)`
