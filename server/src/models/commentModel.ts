@@ -1,4 +1,3 @@
-import type { Knex } from 'knex';
 import BaseModel from './BaseModel';
 
 class CommentModel extends BaseModel {

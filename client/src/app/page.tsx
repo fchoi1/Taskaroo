@@ -31,6 +31,7 @@ const Home: FC = () => {
         <Link href="/about">about</Link>
 
         <Link href="/taskboard">taskboard</Link>
+        <Link href="/login">Login</Link>
 
         <Center>
           <h1 style={{ marginRight: '16px' }}>Taskaroo!</h1>

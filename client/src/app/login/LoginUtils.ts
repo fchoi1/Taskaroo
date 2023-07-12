@@ -4,23 +4,21 @@ import { FormEvent, RefObject } from 'react';
 export const loginHandler = (req: NextApiRequest, res: NextApiResponse) => {
   // Validate user credentials
 
-  // Attach cookies to the response
-  res.setHeader('Set-Cookie', [
-    `userId=${userId}; Max-Age=${maxAge}; HttpOnly; Path=/`
-    // Add more cookies if needed
-  ]);
+  //   // Attach cookies to the response
+  //   res.setHeader('Set-Cookie', [
+  //     `userId=${userId}; Max-Age=${maxAge}; HttpOnly; Path=/`
+  //     // Add more cookies if needed
+  //   ]);
 
   // Send a success response
   res.status(200).json({ message: 'Login successful' });
 };
 
-export default loginHandler;
-
 export const handleLogin = async (
   e: FormEvent,
   emailRef: RefObject<HTMLInputElement>,
   passwordRef: RefObject<HTMLInputElement>,
-  router: router,
+  redirectSuccessfulLogin: () => void
 ) => {
   e.preventDefault();
 
@@ -44,7 +42,7 @@ export const handleLogin = async (
     if (response.ok) {
       // Login successful, handle the response here
       console.log('Login successful');
-      router.push('/taskboard');
+      redirectSuccessfulLogin();
     } else {
       // Login failed, handle the response here
       console.error('Login failed');

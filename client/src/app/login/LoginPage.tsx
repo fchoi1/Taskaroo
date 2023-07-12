@@ -1,7 +1,7 @@
 'use client';
 
 import { NextPage } from 'next';
-import { useRouter, redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { ReactNode, useRef } from 'react';
 
 import { Button, Form, Input, LoginContainer, Title } from './Login.styles';
@@ -18,10 +18,14 @@ const LoginPage: NextPage<LoginPage> = ({ children }) => {
   const passwordRef = useRef(null);
   const router = useRouter();
 
+  const redirectSuccessfulLogin = () => {
+    router.push('/taskboard');
+  };
+
   return (
     <LoginContainer justify={'center'} align={'center'} flex={'column'}>
       <Title>Login</Title>
-      <Form onSubmit={(e) => handleLogin(e, emailRef, passwordRef, router,  redirect)}>
+      <Form onSubmit={(e) => handleLogin(e, emailRef, passwordRef, redirectSuccessfulLogin)}>
         <Input type="email" placeholder="Email" ref={emailRef} />
         <Input type="password" placeholder="Password" ref={passwordRef} />
         <Button type="submit">Login</Button>
