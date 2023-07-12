@@ -41,6 +41,15 @@ export async function seed(knex: Knex): Promise<void> {
     };
   });
 
+  users.push({
+    id: faker.string.uuid(),
+    nick: 'taskaroo tester',
+    email: 'test@test.com',
+    firstName: 'taskaroo',
+    lastName: 'tester',
+    password: '123456'
+  });
+
   await knex<TaskModel>('tasks').del();
   await knex<StatusModel>('statuses').del();
   await knex<ProjectModel>('projects').del();

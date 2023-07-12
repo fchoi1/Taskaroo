@@ -13,6 +13,6 @@ const getAllStatuses = async (req: Request, res: Response) => {
 // Implement other controller functions for statu operations
 
 export default {
-    getAllStatuses
+  getAllStatuses
   // Export other functions for status operations
 };

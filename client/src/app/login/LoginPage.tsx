@@ -1,9 +1,11 @@
 'use client';
 
 import { NextPage } from 'next';
-import { FormEvent, ReactNode, useState } from 'react';
+import { useRouter, redirect } from 'next/navigation';
+import { ReactNode, useRef } from 'react';
 
 import { Button, Form, Input, LoginContainer, Title } from './Login.styles';
+import { handleLogin } from './LoginUtils';
 
 interface LoginPage {
   children: ReactNode;
@@ -12,51 +14,16 @@ interface LoginPage {
 
 const LoginPage: NextPage<LoginPage> = ({ children }) => {
   console.log(children);
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
-
-      if (response.ok) {
-        // Login successful, handle the response here
-        console.log('Login successful');
-      } else {
-        // Login failed, handle the response here
-        console.error('Login failed');
-      }
-    } catch (error) {
-      // Handle any errors that occurred during the request
-      console.error('An error occurred during login:', error);
-    }
-    // Handle form submission here
-  };
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const router = useRouter();
 
   return (
     <LoginContainer justify={'center'} align={'center'} flex={'column'}>
       <Title>Login</Title>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <Form onSubmit={(e) => handleLogin(e, emailRef, passwordRef, router,  redirect)}>
+        <Input type="email" placeholder="Email" ref={emailRef} />
+        <Input type="password" placeholder="Password" ref={passwordRef} />
         <Button type="submit">Login</Button>
       </Form>
     </LoginContainer>

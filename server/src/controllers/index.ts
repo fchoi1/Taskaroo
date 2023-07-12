@@ -4,10 +4,4 @@ import projectController from './projectController';
 import statusController from './statusController';
 import taskController from './taskController';
 
-export {
-  authController,
-  commentController,
-  projectController,
-  statusController,
-  taskController
-};
+export { authController, commentController, projectController, statusController, taskController };

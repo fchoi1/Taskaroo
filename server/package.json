@@ -11,7 +11,8 @@
     "migrate": "knex migrate:latest --env=development",
     "migrate:rollback": "knex migrate:rollback --env=development",
     "seed": "knex seed:run --env=development",
-    "refresh": "npm run migrate:rollback && npm run migrate && npm run seed"
+    "refresh": "npm run migrate:rollback && npm run migrate && npm run seed",
+    "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|css|scss|md)\""
   },
   "keywords": [],
   "author": "",

@@ -2,10 +2,7 @@
   "env": {
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -14,6 +11,5 @@
   "plugins": ["@typescript-eslint"],
   "rules": {},
 
-    "ignorePatterns": ["node_modules", ".next"]
-  
+  "ignorePatterns": ["node_modules", ".next"]
 }
