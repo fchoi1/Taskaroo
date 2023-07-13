@@ -1,14 +1,14 @@
-import React from 'react';
+import { FC, ReactNode } from 'react';
 
 import { ModalCloseButton, ModalContainer, ModalContent, ModalTitle } from './Modal.styles';
 
 interface ModalProps {
   onClose?: () => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
   title: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ title, onClose, children }) => {
+const Modal: FC<ModalProps> = ({ title, onClose, children }) => {
   return (
     <ModalContainer>
       <ModalContent>

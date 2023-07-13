@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../theme';
-
-export const StatusesContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
+import type { Theme } from '../../theme';
 
 export const CurrentProjectNameWrapper = styled.div<{ theme: Theme }>`
   background-color: #f2f2f2;

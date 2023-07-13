@@ -1,6 +1,6 @@
 import { Route } from 'next';
 import Link from 'next/link';
-import React, { createElement } from 'react';
+import { FC, createElement } from 'react';
 import { Bell, Calendar, HelpCircle, Icon } from 'react-feather';
 import { UrlObject } from 'url';
 
@@ -33,7 +33,7 @@ const Navbarlinks = [
   { href: '/about', label: 'Notification', icon: Bell }
 ];
 
-const Navbar: React.FC<NavbarProps> = ({ name }) => {
+const Navbar: FC<NavbarProps> = ({ name }) => {
   return (
     <NavbarContainer>
       <SearchBarContainer>

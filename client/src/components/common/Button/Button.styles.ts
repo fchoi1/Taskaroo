@@ -1,17 +1,11 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../../theme';
+// import type { Theme } from '../../../theme';
+import { type ButtonProps } from './Button';
 
 export const StyledButton = styled.button.attrs((props) => ({
-  type: props.type || 'button',
-}))<{
-  theme: Theme;
-  hover?: boolean;
-  active?: boolean;
-  focus?: boolean;
-  color?: string;
-  type?: string;
-}>`
+  type: props.type || 'button'
+}))<ButtonProps>`
   background-color: ${({ theme, color }) =>
     color ? theme.colors[color]?.color : theme.colors.primary.color};
 
@@ -31,30 +25,27 @@ export const StyledButton = styled.button.attrs((props) => ({
   transition: background-color 0.3s ease;
 
   ${({ theme, hover, color }) => {
-    if (hover) {
-      const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
-      return `&:hover {
-        background-color: ${theme.hoverColor(colorType, -10)};
-          }`;
-    }
+    if (hover === false) return;
+    const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
+    return `&:hover {
+      background-color: ${theme.hoverColor(colorType, -10)};
+        }`;
   }}
 
   ${({ theme, active, color }) => {
-    if (active) {
-      const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
-      return `&:active {
-        background-color: ${theme.hoverColor(colorType, -15)};
-      }`;
-    }
+    if (active === false) return;
+    const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
+    return `&:active {
+      background-color: ${theme.hoverColor(colorType, -15)};
+    }`;
   }}
 
   ${({ theme, focus, color }) => {
-    if (focus) {
-      const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
-      return `&:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px ${theme.hoverColor(colorType, -15)};
-      }`;
-    }
+    if (focus === false) return;
+    const colorType = color ? theme.colors[color]?.color : theme.colors.primary.color;
+    return `&:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px ${theme.hoverColor(colorType, -15)};
+    }`;
   }}
 `;

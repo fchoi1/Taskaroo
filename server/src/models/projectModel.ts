@@ -1,23 +1,20 @@
-import { Knex } from 'knex';
+import BaseModel from './BaseModel';
 
-interface ProjectModel {
-  id: string;
-  name: string;
-  color: string;
+class ProjectModel extends BaseModel {
+  id!: string;
+  name!: string;
+  color!: string;
+
+  static get tableName() {
+    return 'projects';
+  }
+
+  static get jsonSchema() {
+    return {
+      // Define your table schema here
+      // ...
+    };
+  }
 }
 
-const ProjectSchema = {
-  id: 'primary',
-  name: 'string',
-  color: 'string'
-};
-
-const createProject = async (knex: Knex, project: ProjectModel): Promise<void> => {
-  await knex('projects').insert(project);
-};
-
-const getProjects = async (knex: Knex): Promise<ProjectModel[]> => {
-  return knex('projects').select('*');
-};
-
-export { ProjectModel, ProjectSchema, createProject, getProjects };
+export default ProjectModel;

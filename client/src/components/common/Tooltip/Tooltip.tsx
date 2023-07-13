@@ -1,10 +1,10 @@
-import React from 'react';
+import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 
 type TooltipProps = {
   text: string;
   position?: 'top' | 'bottom' | 'left' | 'right';
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 const TooltipWrapper = styled.div<{ position?: 'top' | 'bottom' | 'left' | 'right' }>`
@@ -64,7 +64,7 @@ const TooltipContent = styled.div<{ position?: 'top' | 'bottom' | 'left' | 'righ
   }}
 `;
 
-const Tooltip: React.FC<TooltipProps> = ({ text, position = 'bottom', children }) => {
+const Tooltip: FC<TooltipProps> = ({ text, position = 'bottom', children }) => {
   return (
     <TooltipWrapper position={position}>
       {children}

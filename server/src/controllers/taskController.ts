@@ -1,18 +1,20 @@
-import { Request, Response } from 'express';
-import taskModel from '../models/taskModel';
+import type { Request, Response } from 'express';
+import TaskService from '../service/TaskService';
+
+const taskService = new TaskService();
 
 const getAllTasks = async (req: Request, res: Response) => {
   try {
-    const tasks = await taskModel.getAllTasks();
+    const tasks = await taskService.getTasks();
     res.json(tasks);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve tasks' });
+    res.status(500).json({ error: 'Failed to retrieve tasks: ' + error.message });
   }
 };
 
 // Implement other controller functions for task operations
 
 export default {
-  getAllTasks,
+  getAllTasks
   // Export other functions for task operations
 };

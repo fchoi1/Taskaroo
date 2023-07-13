@@ -1,7 +1,7 @@
 'use client';
 
 import { Inter } from 'next/font/google';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '../theme';
@@ -14,7 +14,7 @@ export const someMetadata = {
   description: 'simplify tasks, simplify your life'
 };
 interface RootLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {

@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import { FC, createElement } from 'react';
 import { CheckSquare, Home, Icon, MessageSquare, Settings, Users } from 'react-feather';
 
 import { MenuButton } from './MenuSection.styles';
@@ -24,7 +24,7 @@ interface MenuSectionProps {
   isOpen: boolean;
 }
 
-const MenuSection: React.FC<MenuSectionProps> = ({ isOpen }) => {
+const MenuSection: FC<MenuSectionProps> = ({ isOpen }) => {
   return (
     <>
       {MenuButtons &&

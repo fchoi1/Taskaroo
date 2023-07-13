@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import { Dispatch, FC, ReactNode, SetStateAction, useState } from 'react';
 
-import { Project } from '../../utils/Interfaces';
+import type { Project } from '../../utils/Interfaces';
 import Navbar from '../Navbar';
 import Sidebar from '../Sidebar';
 import { MainContent, MenuContainer, NavBarGrid, SidebarGrid } from './Menu.styles';
 
 interface MeunProps {
-  children: React.ReactNode;
+  children: ReactNode;
   currentProject: Project;
-  setCurrentProject: React.Dispatch<React.SetStateAction<Project>>;
+  setCurrentProject: Dispatch<SetStateAction<Project>>;
 }
 
-const Menu: React.FC<MeunProps> = ({ children, currentProject, setCurrentProject }) => {
+const Menu: FC<MeunProps> = ({ children, currentProject, setCurrentProject }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

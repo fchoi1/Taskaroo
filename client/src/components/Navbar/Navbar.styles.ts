@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../theme';
+import type { Theme } from '../../theme';
 
 export const NavbarContainer = styled.nav<{ theme: Theme }>`
   background-color: grey;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Theme } from '../../theme';
+import type { Theme } from '../../theme';
 import Button from '../common/Button';
 
 export const StatusTitle = styled.div<{ theme: Theme }>`

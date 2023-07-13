@@ -1,27 +1,22 @@
-import { Knex } from 'knex';
+import BaseModel from './BaseModel';
 
-interface TaskModel {
-  id: string;
-  title: string;
-  statusId: string;
-  description: string;
-  priorityId: number;
+class TaskModel extends BaseModel {
+  id!: string;
+  title!: string;
+  statusId!: string;
+  description!: string;
+  priorityId!: number;
+
+  static get tableName() {
+    return 'tasks';
+  }
+
+  static get jsonSchema() {
+    return {
+      // Define your table schema here
+      // ...
+    };
+  }
 }
 
-const TaskSchema = {
-  id: 'uuid',
-  title: 'string',
-  statusId: 'string',
-  description: 'string',
-  priorityId: 'integer'
-};
-
-const createTask = async (knex: Knex, task: TaskModel): Promise<void> => {
-  await knex('tasks').insert(task);
-};
-
-const getTasks = async (knex: Knex): Promise<TaskModel[]> => {
-  return knex('tasks').select('*');
-};
-
-export { TaskModel, TaskSchema, createTask, getTasks };
+export default TaskModel;

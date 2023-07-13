@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { Project, Status, Task } from '../utils/Interfaces';
+import type { Project, Status, Task } from '../utils/Interfaces';
 import { TasksState } from './taskActions';
 
 // Generate test data with UUIDs for tasks and status

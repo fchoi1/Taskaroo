@@ -1,4 +1,4 @@
-import { Task } from '../utils/Interfaces';
+import type { Task } from '../utils/Interfaces';
 
 export const taskActions = {
   SET_TASKS: 'SET_TASKS',

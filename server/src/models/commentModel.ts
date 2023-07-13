@@ -1,21 +1,19 @@
-import { Knex } from 'knex';
+import BaseModel from './BaseModel';
 
-interface CommentModel {
-  id: string;
-  taskId: string;
+class CommentModel extends BaseModel {
+  id!: string;
+  taskId: number;
+
+  static get tableName() {
+    return 'comments';
+  }
+
+  static get jsonSchema() {
+    return {
+      // Define your table schema here
+      // ...
+    };
+  }
 }
 
-const CommentSchema = {
-  id: 'primary',
-  taskId: 'uuid'
-};
-
-const createComment = async (knex: Knex, comment: CommentModel): Promise<void> => {
-  await knex('comments').insert(comment);
-};
-
-const getCommentsByTaskId = async (knex: Knex, taskId: string): Promise<CommentModel[]> => {
-  return knex('comments').where('taskId', taskId).select('*');
-};
-
-export { CommentModel, CommentSchema, createComment, getCommentsByTaskId };
+export default CommentModel;

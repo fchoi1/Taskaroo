@@ -1,4 +1,4 @@
-import React from 'react';
+import { ChangeEvent, FC } from 'react';
 import { Search } from 'react-feather';
 
 import { SearchBarWrapper, SearchIconContainer, SearchInput } from './SearchBar.styles';
@@ -8,8 +8,8 @@ type SearchBarProps = {
   onChange: (value: string) => void;
 };
 
-const SearchBar: React.FC<SearchBarProps> = ({ placeholder, onChange }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const SearchBar: FC<SearchBarProps> = ({ placeholder, onChange }) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     onChange(value);
   };
