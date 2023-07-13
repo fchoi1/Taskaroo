@@ -1,12 +1,14 @@
 import type { Request, Response } from 'express';
-import taskService from '../service/taskService';
+import TaskService from '../service/TaskService';
+
+const taskService = new TaskService();
 
 const getAllTasks = async (req: Request, res: Response) => {
   try {
     const tasks = await taskService.getTasks();
     res.json(tasks);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve tasks' });
+    res.status(500).json({ error: 'Failed to retrieve tasks: ' + error.message });
   }
 };
 

@@ -1,16 +1,16 @@
-import knex from '../db';
+import { CommentModel } from '../models';
 import type { Comment } from '../utils/Interfaces';
 
-const commentService = {
-  createComment: async (comment: Comment): Promise<void> => {
-    await knex('comments').insert(comment);
-  },
+class CommentService {
+  async createComment(comment: Comment): Promise<void> {
+    await CommentModel.query().insert(comment);
+  }
 
-  getComments: async (): Promise<Comment[]> => {
-    return knex('comments').select('*');
+  async getComments(): Promise<Comment[]> {
+    return CommentModel.query();
   }
 
   // Add other functions here as needed
-};
+}
 
-export default commentService;
+export default CommentService;

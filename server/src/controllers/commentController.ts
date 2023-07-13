@@ -1,12 +1,14 @@
 import type { Request, Response } from 'express';
-import commentService from '../service/commentService';
+import CommentService from '../service/CommentService';
+
+const commentService = new CommentService();
 
 const getAllComments = async (req: Request, res: Response) => {
   try {
     const comments = await commentService.getComments();
     res.json(comments);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve comments' });
+    res.status(500).json({ error: 'Failed to retrieve comments:  ' + error.message });
   }
 };
 

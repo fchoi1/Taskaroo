@@ -1,16 +1,16 @@
-import knex from '../db';
+import { TaskModel } from '../models';
 import type { Task } from '../utils/Interfaces';
 
-const taskService = {
-  createTask: async (task: Task): Promise<void> => {
-    await knex('tasks').insert(task);
-  },
+class TaskService {
+  async createTask(task: Task): Promise<void> {
+    await TaskModel.query().insert(task);
+  }
 
-  getTasks: async (): Promise<Task[]> => {
-    return knex('tasks').select('*');
+  async getTasks(): Promise<Task[]> {
+    return TaskModel.query();
   }
 
   // Add other functions here as needed
-};
+}
 
-export default taskService;
+export default TaskService;

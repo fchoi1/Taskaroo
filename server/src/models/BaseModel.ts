@@ -1,10 +1,10 @@
 import { Model, Modifiers } from 'objection';
 
 class BaseModel extends Model {
-  createdBy?: string;
-  createdAt?: Date;
+  createdBy: string;
+  createdAt: Date;
   updatedBy: string;
-  updatedAt?: Date;
+  updatedAt: Date;
   static get modelPaths() {
     return [__dirname];
   }

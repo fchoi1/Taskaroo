@@ -1,14 +1,17 @@
 import type { Request, Response } from 'express';
-import { authenticateUser, createUser } from '../../service/auth/authService';
+import AuthService from '../../service/AuthService';
+import UserService from '../../service/UserService';
 import { clearSessionUser, setSessionUser } from '../../utils/authUtils';
 
+const userService = new UserService();
+const authService = new AuthService();
+
 const login = async (req: Request, res: Response) => {
-  console.log('Login', req.body);
   const { email, password } = req.body;
 
   try {
     // Authenticate the user
-    const { isAuthenticated, user } = await authenticateUser(email, password);
+    const { isAuthenticated, user } = await authService.authenticateUser(email, password);
 
     if (isAuthenticated) {
       if (!user) res.status(403).json({ error: 'User not found' });
@@ -22,8 +25,7 @@ const login = async (req: Request, res: Response) => {
       res.status(401).json({ error: 'Invalid credentials' });
     }
   } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).json({ error: 'An error occurred during login' });
+    res.status(500).json({ error: 'An error occurred during login:' + error.message });
   }
 };
 
@@ -34,14 +36,13 @@ const register = async (req: Request, res: Response) => {
 
   try {
     // Create a new user
-    await createUser({ email, password, firstName, lastName });
+    await userService.createUser({ email, password, firstName, lastName });
 
     // User registration successful, return a success response
     res.json({ message: 'Registration successful' });
   } catch (error) {
     // Handle any errors that occurred during user registration
-    console.error('Error during registration:', error);
-    res.status(500).json({ error: 'An error occurred during registration' });
+    res.status(500).json({ error: 'An error occurred during registration: ' + error.message });
   }
 };
 
@@ -51,8 +52,7 @@ const logout = async (req: Request, res: Response) => {
     clearSessionUser(req, res);
     // Logout the user
   } catch (error) {
-    console.error('Error during logout:', error);
-    res.status(500).json({ error: 'An error occurred during logout' });
+    res.status(500).json({ error: 'An error occurred during logout: ' + error.message });
   }
 };
 

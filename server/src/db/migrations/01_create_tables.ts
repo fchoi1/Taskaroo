@@ -1,10 +1,9 @@
 import type { Knex } from 'knex';
 
-const addCommonColumns = (table: Knex.CreateTableBuilder, knex: Knex) => {
+const addCommonColumns = (table: Knex.CreateTableBuilder) => {
   table.string('createdBy').notNullable().defaultTo('system');
   table.string('updatedBy').notNullable().defaultTo('system');
-  table.timestamp('createdAt').defaultTo(knex.fn.now());
-  table.timestamp('updatedAt').defaultTo(knex.fn.now());
+  table.timestamps(true, true);
 };
 
 export async function up(knex: Knex) {
@@ -20,13 +19,13 @@ export async function up(knex: Knex) {
     table.string('statusId').notNullable();
     table.string('description').notNullable();
     table.integer('priorityId').notNullable();
-    addCommonColumns(table, knex);
+    addCommonColumns(table);
   });
 
   await knex.schema.createTable('comments', (table: Knex.CreateTableBuilder) => {
     table.string('id').primary();
     table.string('taskId').notNullable();
-    addCommonColumns(table, knex);
+    addCommonColumns(table);
 
     // Define other columns as needed
   });
@@ -35,7 +34,7 @@ export async function up(knex: Knex) {
     table.string('id').primary();
     table.string('name').notNullable();
     table.string('color').notNullable();
-    addCommonColumns(table, knex);
+    addCommonColumns(table);
     // Define other columns as needed
   });
 
@@ -43,7 +42,7 @@ export async function up(knex: Knex) {
     table.string('id').primary();
     table.string('name').notNullable();
     table.integer('step').notNullable();
-    addCommonColumns(table, knex);
+    addCommonColumns(table);
 
     // Define other columns as needed
   });
@@ -55,7 +54,7 @@ export async function up(knex: Knex) {
     table.string('firstName').notNullable();
     table.string('lastName').notNullable();
     table.string('password').notNullable();
-    addCommonColumns(table, knex);
+    addCommonColumns(table);
   });
 }
 

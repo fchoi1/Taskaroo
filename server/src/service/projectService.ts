@@ -1,16 +1,16 @@
-import knex from '../db';
+import { ProjectModel } from '../models';
 import type { Project } from '../utils/Interfaces';
 
-const projectService = {
-  createProject: async (project: Project): Promise<void> => {
-    await knex('projects').insert(project);
-  },
+class ProjectService {
+  async createProject(project: Project): Promise<void> {
+    await ProjectModel.query().insert(project);
+  }
 
-  getProjects: async (): Promise<Project[]> => {
-    return knex('projects').select('*');
+  async getProjects(): Promise<Project[]> {
+    return ProjectModel.query();
   }
 
   // Add other functions here as needed
-};
+}
 
-export default projectService;
+export default ProjectService;

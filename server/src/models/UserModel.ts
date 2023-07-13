@@ -8,6 +8,7 @@ class UserModel extends BaseModel {
   firstName!: string;
   lastName!: string;
   password!: string;
+  emailVerified: Date;
 
   static get virtualAttributes() {
     return ['fullName'];

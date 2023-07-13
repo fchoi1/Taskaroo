@@ -1,12 +1,14 @@
 import type { Request, Response } from 'express';
-import projectService from '../service/projectService';
+import ProjectService from '../service/ProjectService';
+
+const projectService = new ProjectService();
 
 const getAllProjects = async (req: Request, res: Response) => {
   try {
     const projects = await projectService.getProjects();
     res.json(projects);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve projects' });
+    res.status(500).json({ error: 'Failed to retrieve projects:  ' + error.message });
   }
 };
 
