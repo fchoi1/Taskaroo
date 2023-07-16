@@ -16,7 +16,7 @@ export const clearSessionUser = (req: Request, res: Response) => {
         console.error('Error destroying session:', err);
         res.status(500);
       } else {
-        res.status(200).json({ message: 'Logout successful' });
+        res.status(200).json({ message: 'Current Session deleted' });
       }
     });
   } else {

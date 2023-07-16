@@ -11,7 +11,7 @@ class UserService {
       const createdUser = await UserModel.query().insertAndFetch(user);
       return createdUser;
     } catch (error) {
-      throw new Error('Failed to create user: ' + error);
+      throw new Error('Failed to create user: ' + error.message);
     }
   }
 
@@ -20,7 +20,7 @@ class UserService {
       const user = await UserModel.query().findById(userId);
       return user;
     } catch (error) {
-      throw new Error('Failed to get user: ' + error);
+      throw new Error('Failed to get user: ' + error.message);
     }
   }
 
@@ -29,7 +29,7 @@ class UserService {
       const user = await UserModel.query().findOne({ email });
       return user;
     } catch (error) {
-      throw new Error('Failed to get user by email: ' + error);
+      throw new Error('Failed to get user by email: ' + error.message);
     }
   }
 
@@ -38,7 +38,7 @@ class UserService {
       const user = await UserModel.query().findOne({ providerAccountId, provider });
       return user;
     } catch (error) {
-      throw new Error('Failed to get user by account: ' + error);
+      throw new Error('Failed to get user by account: ' + error.message);
     }
   }
 
@@ -47,7 +47,7 @@ class UserService {
       const [updatedUser] = await UserModel.query().findById(user.id).patch(user).returning('*');
       return updatedUser;
     } catch (error) {
-      throw new Error('Failed to update user: ' + error);
+      throw new Error('Failed to update user: ' + error.message);
     }
   }
 
@@ -55,7 +55,7 @@ class UserService {
     try {
       await UserModel.query().deleteById(userId);
     } catch (error) {
-      throw new Error('Failed to delete user: ' + error);
+      throw new Error('Failed to delete user: ' + error.message);
     }
   }
 

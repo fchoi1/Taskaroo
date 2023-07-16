@@ -31,14 +31,14 @@ class AuthService {
     }
   }
 
-  // async createSession(sessionData: SessionUser) {
-  //   try {
-  //     // Implement the createSession logic using Knex
-  //   } catch (error) {
-  //     console.error(error);
-  //     throw new Error('Failed to create session');
-  //   }
-  // }
+  async createSession(sessionData: SessionUser) {
+    try {
+      // Implement the createSession logic using Knex
+    } catch (error) {
+      console.error(error);
+      throw new Error('Failed to create session');
+    }
+  }
 
   async getSessionAndUser(sessionToken) {
     try {

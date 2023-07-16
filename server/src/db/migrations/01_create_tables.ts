@@ -56,6 +56,23 @@ export async function up(knex: Knex) {
     table.string('password').notNullable();
     addCommonColumns(table);
   });
+
+  await knex.schema.createTable('accounts', (table) => {
+    table.string('id').primary();
+    table.string('userId').notNullable();
+    table.string('type');
+    table.string('provider');
+    table.string('providerAccountId');
+    table.string('refresh_token');
+    table.string('access_token');
+    table.integer('expires_at');
+    table.string('token_type');
+    table.string('scope');
+    table.string('id_token');
+    table.string('session_state');
+
+    addCommonColumns(table);
+  });
 }
 
 export async function down(knex: Knex) {
@@ -65,4 +82,5 @@ export async function down(knex: Knex) {
   await knex.schema.dropTableIfExists('projects');
   await knex.schema.dropTableIfExists('users');
   await knex.schema.dropTableIfExists('sessions');
+  await knex.schema.dropTableIfExists('accounts');
 }
