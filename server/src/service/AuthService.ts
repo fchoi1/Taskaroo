@@ -1,5 +1,5 @@
 import { AccountModel, UserModel } from '../models';
-import type { NewAccount, SessionUser, User } from '../utils/Interfaces';
+import type { NewAccount, User } from '../utils/Interfaces';
 
 class AuthService {
   async authenticateUser(
@@ -12,7 +12,6 @@ class AuthService {
       const isPasswordValid = await user.comparePasswords(password);
       return isPasswordValid ? { isAuthenticated: true, user } : { isAuthenticated: false };
     }
-
     return { isAuthenticated: false };
   }
 
@@ -50,43 +49,6 @@ class AuthService {
       return deletedAccount;
     } catch (error) {
       throw new Error('Failed to unlink account');
-    }
-  }
-
-  async createSession(sessionData: SessionUser) {
-    try {
-      // Implement the createSession logic using Knex
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to create session');
-    }
-  }
-
-  async getSessionAndUser(sessionToken) {
-    try {
-      // Implement the getSessionAndUser logic using Knex
-      return undefined;
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to get session and user');
-    }
-  }
-
-  async updateSession({ sessionToken }) {
-    try {
-      // Implement the updateSession logic using Knex
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to update session');
-    }
-  }
-
-  async deleteSession(sessionToken) {
-    try {
-      // Implement the deleteSession logic using Knex
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to delete session');
     }
   }
 }
