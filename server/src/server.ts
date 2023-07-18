@@ -8,19 +8,21 @@ import { SessionUser } from './utils/Interfaces';
 // Augment express-session with a custom SessionData object
 declare module 'express-session' {
   export interface SessionData {
-    user: SessionUser;
-    loggedIn: boolean;
+    user?: SessionUser;
+    loggedIn?: boolean;
+    token?: string;
   }
 }
 
 const app = express();
-const port = 3001;
+const port = parseInt(process.env.SERVER_PORT) || 3001;
 
 const KnexSessionStore = KnexSessionStoreConstructor(session);
 const sessionStore = new KnexSessionStore({
   knex, // Your Knex instance
   tablename: 'sessions',
-  createtable: true
+  createtable: true,
+  clearInterval: parseInt(process.env.SESSION_EXPIRE) || 1000 * 60 * 60
 });
 
 const sess = {
@@ -28,7 +30,10 @@ const sess = {
   resave: false,
   saveUninitialized: false,
   store: sessionStore,
-  cookie: { secure: false }
+  cookie: {
+    maxAge: parseInt(process.env.SESSION_EXPIRE) || 1000 * 60 * 60,
+    secure: false
+  }
 };
 
 app.use(express.json());

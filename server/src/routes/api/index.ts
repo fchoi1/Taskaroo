@@ -17,11 +17,8 @@ apiRouter.use('/project', projectRoutes);
 apiRouter.use('/comment', commentRoutes);
 apiRouter.use('/auth', authRoutes);
 apiRouter.use('/user', userRoutes);
-apiRouter.use('/session', accountRoutes;
-;
-);
-apiRouter.use('/account', sessionRoutes;
-);
+apiRouter.use('/session', sessionRoutes);
+apiRouter.use('/account', accountRoutes);
 
 // Catch-all route for undefined routes
 apiRouter.use((req: Request, res: Response) => {
