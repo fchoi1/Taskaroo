@@ -1,7 +1,6 @@
 import BaseModel from './BaseModel';
 
 class TaskModel extends BaseModel {
-  id!: string;
   title!: string;
   statusId!: string;
   description!: string;

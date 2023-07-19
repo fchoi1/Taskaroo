@@ -1,14 +1,14 @@
 import { UserModel } from '../models';
-import type { NewUser, User } from '../utils/Interfaces';
+import type { NewUser, SessionUser, User } from '../utils/Interfaces';
 
 class UserService {
   async getUsers(): Promise<User[]> {
     return UserModel.query();
   }
 
-  async createUser(user: NewUser): Promise<User> {
+  async createUser(user: NewUser, currentUser: SessionUser): Promise<User> {
     try {
-      const createdUser = await UserModel.query().insertAndFetch(user);
+      const createdUser = await UserModel.query().insertAndFetch(user).context({ currentUser });
       return createdUser;
     } catch (error) {
       throw new Error('Failed to create user: ' + error.message);
@@ -42,12 +42,12 @@ class UserService {
     }
   }
 
-  async updateUser(user: User): Promise<User> {
+  async updateUser(user: User,  currentUser: SessionUser): Promise<User> {
     try {
-      const [updatedUser] = await UserModel.query().findById(user.id).patch(user).returning('*');
+      const updatedUser = await UserModel.query().updateAndFetchById(user.id, user).context({ currentUser });
       return updatedUser;
     } catch (error) {
-      throw new Error('Failed to update user: ' + error.message);
+      throw new Error('Failed to update userservice: ' + error.message);
     }
   }
 

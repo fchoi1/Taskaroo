@@ -1,5 +1,5 @@
 import { AccountModel, UserModel } from '../models';
-import type { NewAccount, User } from '../utils/Interfaces';
+import type { NewAccount, SessionUser, User } from '../utils/Interfaces';
 
 class AuthService {
   async authenticateUser(
@@ -15,12 +15,10 @@ class AuthService {
     return { isAuthenticated: false };
   }
 
-  async linkAccount(account: NewAccount) {
+  async linkAccount(account: NewAccount, currentUser: SessionUser) {
     try {
-      const createdAccount = await AccountModel.query().insert(account);
+      const createdAccount = await AccountModel.query().insertAndFetch(account).context({currentUser});
       return createdAccount;
-
-      // Implement the linkAccount logic using Knex
     } catch (error) {
       console.error(error);
       throw new Error('Failed to link account');
@@ -30,17 +28,17 @@ class AuthService {
   async unlinkAccount({ providerAccountId, provider }) {
     try {
       let deletedAccount: AccountModel;
-      if (!providerAccountId) {
-        // If providerAccountId is not provided, delete by the provider
+      if (providerAccountId) {
+        // If providerAccountId is provided, delete by the providerAccountId
         deletedAccount = await AccountModel.query()
-          .where({ provider })
+          .where({ providerAccountId })
           .delete()
           .returning('*')
           .first();
       } else {
-        // If providerAccountId is provided, delete by the providerAccountId
+        // If providerAccountId is not provided, delete by the provider
         deletedAccount = await AccountModel.query()
-          .where({ providerAccountId })
+          .where({ provider })
           .delete()
           .returning('*')
           .first();

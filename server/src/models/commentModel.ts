@@ -1,7 +1,6 @@
 import BaseModel from './BaseModel';
 
 class CommentModel extends BaseModel {
-  id!: string;
   taskId: number;
 
   static get tableName() {
