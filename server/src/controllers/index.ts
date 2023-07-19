@@ -1,4 +1,4 @@
-import authController from './auth';
+import authController from './authController';
 import commentController from './commentController';
 import projectController from './projectController';
 import statusController from './statusController';

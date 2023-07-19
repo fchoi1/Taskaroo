@@ -10,13 +10,15 @@ export const setSessionUser = (
 
 export const clearSessionUser = (req: Request, res: Response) => {
   // Handle the logout logic here
-  if (req.session.loggedIn) {
+  if (req.session) {
+    const deletedSession = req.session;
+    deletedSession.token = req.session.id;
     req.session.destroy((err) => {
       if (err) {
         console.error('Error destroying session:', err);
         res.status(500);
       } else {
-        res.status(200).json({ message: 'Logout successful' });
+        res.status(200).json(deletedSession);
       }
     });
   } else {
