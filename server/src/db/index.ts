@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import { knex, type Knex } from 'knex';
-import { knexSnakeCaseMappers, Model } from 'objection';
+import { knexSnakeCaseMappers } from 'objection';
 
 dotenv.config();
 
@@ -18,6 +18,5 @@ export const dbConfig: Knex.Config = {
 
 const db = knex(dbConfig);
 
-// Model.knex(db);
 
 export default db;
