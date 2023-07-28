@@ -1,11 +1,9 @@
 import type { Request, Response } from 'express';
 import { promisify } from 'util';
 import AuthService from '../service/AuthService';
-import UserService from '../service/UserService';
 import { NewAccount, SessionData } from '../utils/Interfaces';
 import { clearSessionUser, setSessionUser } from '../utils/authUtils';
 
-const userService = new UserService();
 const authService = new AuthService();
 
 const login = async (req: Request, res: Response) => {
@@ -30,17 +28,6 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
-const register = async (req: Request, res: Response) => {
-  const { email, password, firstName, lastName } = req.body;
-
-  try {
-    await userService.createUser({ email, password, firstName, lastName });
-    res.json({ message: 'Registration successful' });
-  } catch (error) {
-    res.status(500).json({ error: 'An error occurred during registration: ' + error.message });
-  }
-};
-
 const logout = async (req: Request, res: Response) => {
   try {
     clearSessionUser(req, res);
@@ -52,6 +39,7 @@ const logout = async (req: Request, res: Response) => {
 const updateSession = async (req: Request, res: Response) => {
   const { sessionToken } = req.params;
   const { email, id, username } = req.body;
+
   let sessionData: SessionData;
 
   const setSessionAsync = promisify(req.sessionStore.set).bind(req.sessionStore);
@@ -119,6 +107,12 @@ const deleteSession = async (req: Request, res: Response) => {
   }
 };
 
+const test = async (req: Request, res: Response) => {
+  console.log('testing here>>>', req);
+
+  res.status(200).json({ message: 'Soemthing' });
+};
+
 const linkAccount = async (req: Request, res: Response) => {
   const {
     userId,
@@ -134,6 +128,8 @@ const linkAccount = async (req: Request, res: Response) => {
     session_state
   } = req.body;
 
+  const { user: currentUser } = req.session;
+
   const accountInfo: NewAccount = {
     userId,
     type,
@@ -148,7 +144,7 @@ const linkAccount = async (req: Request, res: Response) => {
     session_state
   };
   try {
-    const linkedAccount = await authService.linkAccount(accountInfo);
+    const linkedAccount = await authService.linkAccount(accountInfo, currentUser);
 
     res.status(201).json(linkedAccount);
   } catch (error) {
@@ -172,12 +168,11 @@ const unlinkAccount = async (req: Request, res: Response) => {
 
 export default {
   login,
-  register,
   logout,
   getSession,
   updateSession,
   deleteSession,
   linkAccount,
-  unlinkAccount
-  // Export other functions for comment operations
+  unlinkAccount,
+  test
 };

@@ -33,7 +33,9 @@ const getUser = async (req: Request, res: Response) => {
 const createUser = async (req: Request, res: Response) => {
   try {
     const { user }: { user: NewUser } = req.body;
-    const createdUser = await userService.createUser(user);
+    const { user: currentUser } = req.session;
+
+    const createdUser = await userService.createUser(user, currentUser);
     res.status(201).json(createdUser);
   } catch (error) {
     res.status(500).json({ error: 'Failed to create user: ' + error.message });
@@ -52,9 +54,11 @@ const getUserbyId = async (req: Request, res: Response) => {
 
 const updateUser = async (req: Request, res: Response) => {
   try {
-    const userId = req.params.id;
-    const updatedUser: User = req.body;
-    const user = await userService.updateUser({ ...updatedUser, id: userId });
+    const id = req.params.id;
+    const { user: updatedUser }: { user: User } = req.body;
+    const { user: currentUser } = req.session;
+
+    const user = await userService.updateUser({ ...updatedUser, id }, currentUser);
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Failed to update user: ' + error.message });

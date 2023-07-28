@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import BaseModel from './BaseModel';
 
 class UserModel extends BaseModel {
-  id!: string;
   nick: string;
   email!: string;
   firstName!: string;

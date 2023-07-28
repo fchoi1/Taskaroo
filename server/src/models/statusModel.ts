@@ -1,7 +1,6 @@
 import BaseModel from './BaseModel';
 
 class StatusModel extends BaseModel {
-  id!: string;
   name!: string;
   step!: number;
 

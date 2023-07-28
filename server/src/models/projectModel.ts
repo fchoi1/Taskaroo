@@ -1,7 +1,6 @@
 import BaseModel from './BaseModel';
 
 class ProjectModel extends BaseModel {
-  id!: string;
   name!: string;
   color!: string;
 

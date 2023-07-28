@@ -1,9 +1,9 @@
 import { CommentModel } from '../models';
-import type { Comment } from '../utils/Interfaces';
+import type { Comment, SessionUser } from '../utils/Interfaces';
 
 class CommentService {
-  async createComment(comment: Comment): Promise<void> {
-    await CommentModel.query().insert(comment);
+  async createComment(comment: Comment, currentUser: SessionUser): Promise<void> {
+    await CommentModel.query().insert(comment).context({currentUser});
   }
 
   async getComments(): Promise<Comment[]> {

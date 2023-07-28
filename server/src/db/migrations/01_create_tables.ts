@@ -13,8 +13,10 @@ export async function up(knex: Knex) {
   await knex.schema.dropTableIfExists('projects');
   await knex.schema.dropTableIfExists('users');
 
+  await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
+
   await knex.schema.createTable('tasks', function (table) {
-    table.string('id').primary();
+    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('title').notNullable();
     table.string('statusId').notNullable();
     table.string('description').notNullable();
@@ -23,32 +25,27 @@ export async function up(knex: Knex) {
   });
 
   await knex.schema.createTable('comments', (table: Knex.CreateTableBuilder) => {
-    table.string('id').primary();
+    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('taskId').notNullable();
     addCommonColumns(table);
-
-    // Define other columns as needed
   });
 
   await knex.schema.createTable('projects', (table: Knex.CreateTableBuilder) => {
-    table.string('id').primary();
+    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('name').notNullable();
     table.string('color').notNullable();
     addCommonColumns(table);
-    // Define other columns as needed
   });
 
   await knex.schema.createTable('statuses', (table: Knex.CreateTableBuilder) => {
-    table.string('id').primary();
+    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('name').notNullable();
     table.integer('step').notNullable();
     addCommonColumns(table);
-
-    // Define other columns as needed
   });
 
   await knex.schema.createTable('users', (table) => {
-    table.string('id').primary();
+    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('nick');
     table.string('email').notNullable();
     table.string('firstName').notNullable();
@@ -58,7 +55,7 @@ export async function up(knex: Knex) {
   });
 
   await knex.schema.createTable('accounts', (table) => {
-    table.string('id').primary();
+    table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('userId').notNullable();
     table.string('type');
     table.string('provider');
@@ -70,7 +67,6 @@ export async function up(knex: Knex) {
     table.string('scope');
     table.string('id_token');
     table.string('session_state');
-
     addCommonColumns(table);
   });
 }
@@ -83,4 +79,6 @@ export async function down(knex: Knex) {
   await knex.schema.dropTableIfExists('users');
   await knex.schema.dropTableIfExists('sessions');
   await knex.schema.dropTableIfExists('accounts');
+
+  await knex.raw('DROP EXTENSION IF EXISTS "uuid-ossp"');
 }
