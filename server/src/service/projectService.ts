@@ -1,9 +1,9 @@
 import { ProjectModel } from '../models';
-import type { Project, SessionUser } from '../utils/Interfaces';
+import type { Project } from '../utils/Interfaces';
 
 class ProjectService {
-  async createProject(project: Project, currentUser: SessionUser): Promise<void> {
-    await ProjectModel.query().insert(project).context({currentUser});
+  async createProject(project: Project, currentUser: string): Promise<void> {
+    await ProjectModel.query().insert(project).context({ currentUser });
   }
 
   async getProjects(): Promise<Project[]> {

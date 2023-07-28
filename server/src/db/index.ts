@@ -18,6 +18,6 @@ export const dbConfig: Knex.Config = {
 
 const db = knex(dbConfig);
 
-Model.knex(db);
+// Model.knex(db);
 
 export default db;

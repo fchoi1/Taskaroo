@@ -19,5 +19,8 @@
     "lint": "cd client && npm run lint && cd ../server && npm run lint",
     "format": "cd client && npm run format && cd ../server && npm run format",
     "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\""
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
   }
 }

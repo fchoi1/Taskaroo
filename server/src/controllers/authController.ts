@@ -1,8 +1,6 @@
 import type { Request, Response } from 'express';
-import { promisify } from 'util';
 import AuthService from '../service/AuthService';
-import { NewAccount, SessionData } from '../utils/Interfaces';
-import { clearSessionUser, setSessionUser } from '../utils/authUtils';
+import { NewAccount } from '../utils/Interfaces';
 
 const authService = new AuthService();
 
@@ -14,9 +12,6 @@ const login = async (req: Request, res: Response) => {
 
     if (isAuthenticated) {
       if (!user) res.status(403).json({ error: 'User not found' });
-
-      const { email, id, nick } = user;
-      setSessionUser(req, { email, id, username: nick });
 
       res.json({ message: 'Login successful', user });
       res.status(200);
@@ -30,56 +25,44 @@ const login = async (req: Request, res: Response) => {
 
 const logout = async (req: Request, res: Response) => {
   try {
-    clearSessionUser(req, res);
+    console.log('logout');
   } catch (error) {
     res.status(500).json({ error: 'An error occurred during logout: ' + error.message });
   }
 };
 
-const updateSession = async (req: Request, res: Response) => {
-  const { sessionToken } = req.params;
-  const { email, id, username } = req.body;
-
-  let sessionData: SessionData;
-
-  const setSessionAsync = promisify(req.sessionStore.set).bind(req.sessionStore);
-  const saveSessionAsync = promisify(req.session.save).bind(req.session);
-  const getSessionAsync = promisify(req.sessionStore.get).bind(req.sessionStore);
+const createSession = async (req: Request, res: Response) => {
+  const { userId, expires, sessionToken, currentUser } = req.body;
 
   try {
-    if (sessionToken) {
-      const { loggedIn, cookie } = req.session;
-      await setSessionAsync(sessionToken, { cookie, loggedIn, user: { email, id, username } });
-      sessionData = await getSessionAsync(sessionToken);
-    } else {
-      setSessionUser(req, { email, id, username });
-      await saveSessionAsync();
-      sessionData = req.session;
-      sessionData.token = req.session.id;
-    }
+    const session = await authService.createSession({ userId, expires, sessionToken }, currentUser);
+    res.status(201).json(session);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create session: ' + error.message });
+  }
+};
 
-    res.status(201).json(sessionData);
+const updateSession = async (req: Request, res: Response) => {
+  const { session, currentUser } = req.body;
+
+  try {
+    const updated = await authService.updateSession(session, currentUser);
+    return updated ? res.status(201).json(updated) : res.status(404).json(null);
   } catch (error) {
     res.status(500).json({ error: 'Failed to create session: ' + error.message });
   }
 };
 
 const getSession = async (req: Request, res: Response) => {
+  const { sessionToken } = req.params;
+  if (!sessionToken) return res.status(404).json(null);
+
   try {
-    let sessionData: SessionData;
-    const { sessionToken } = req.params;
+    const { session, user } = await authService.getSession(sessionToken);
 
-    if (sessionToken) {
-      const getSessionAsync = promisify(req.sessionStore.get).bind(req.sessionStore);
-      sessionData = await getSessionAsync(sessionToken);
-    } else {
-      sessionData = req.session;
-      sessionData.token = req.session.id;
-    }
+    if (!session) return res.status(404).json(null);
 
-    if (!sessionData) return res.status(404).json({ error: 'Session not found' });
-
-    res.status(200).json(sessionData);
+    res.status(200).json({ session, user });
   } catch (error) {
     res.status(500).json({ error: 'Failed to get session and user: ' + error.message });
   }
@@ -87,30 +70,12 @@ const getSession = async (req: Request, res: Response) => {
 
 const deleteSession = async (req: Request, res: Response) => {
   try {
-    let sessionData: SessionData;
-
     const { sessionToken } = req.params;
-
-    if (sessionToken) {
-      const getSessionAsync = promisify(req.sessionStore.get).bind(req.sessionStore);
-      sessionData = await getSessionAsync(sessionToken);
-      if (!sessionData) return res.status(404).json({ error: 'Session does not exist' });
-
-      const destroySessionAsync = promisify(req.sessionStore.destroy).bind(req.sessionStore);
-      await destroySessionAsync(sessionToken);
-      res.json(sessionData);
-    } else {
-      return clearSessionUser(req, res);
-    }
+    await authService.deleteSession(sessionToken);
+    res.json({ sessionToken });
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete session:' + error.message });
   }
-};
-
-const test = async (req: Request, res: Response) => {
-  console.log('testing here>>>', req);
-
-  res.status(200).json({ message: 'Soemthing' });
 };
 
 const linkAccount = async (req: Request, res: Response) => {
@@ -126,9 +91,9 @@ const linkAccount = async (req: Request, res: Response) => {
     scope,
     id_token,
     session_state
-  } = req.body;
+  } = req.body.account;
 
-  const { user: currentUser } = req.session;
+  const currentUser = req.body.currentUser;
 
   const accountInfo: NewAccount = {
     userId,
@@ -153,14 +118,13 @@ const linkAccount = async (req: Request, res: Response) => {
 };
 
 const unlinkAccount = async (req: Request, res: Response) => {
-  const { providerAccountId } = req.params;
-  const { provider } = req.query;
+  const { providerAccountId, provider } = req.query;
   try {
     if (!providerAccountId || !provider)
       return res.status(404).json({ error: 'Account not found' });
-    const deletedAccount = await authService.unlinkAccount({ providerAccountId, provider });
+    await authService.unlinkAccount({ providerAccountId, provider });
 
-    res.status(201).json(deletedAccount);
+    res.status(201).json(null);
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete account: ' + error.message });
   }
@@ -169,10 +133,10 @@ const unlinkAccount = async (req: Request, res: Response) => {
 export default {
   login,
   logout,
+  createSession,
   getSession,
   updateSession,
   deleteSession,
   linkAccount,
-  unlinkAccount,
-  test
+  unlinkAccount
 };

@@ -1,5 +1,5 @@
-import { AccountModel, UserModel } from '../models';
-import type { NewAccount, SessionUser, User } from '../utils/Interfaces';
+import { AccountModel, SessionModel, UserModel } from '../models';
+import type { NewAccount, Session, User } from '../utils/Interfaces';
 
 class AuthService {
   async authenticateUser(
@@ -15,38 +15,84 @@ class AuthService {
     return { isAuthenticated: false };
   }
 
-  async linkAccount(account: NewAccount, currentUser: SessionUser) {
+  async linkAccount(account: NewAccount, currentUser: string) {
     try {
-      const createdAccount = await AccountModel.query().insertAndFetch(account).context({currentUser});
+      const createdAccount = await AccountModel.query()
+        .insertAndFetch(account)
+        .context({ currentUser });
       return createdAccount;
     } catch (error) {
       console.error(error);
-      throw new Error('Failed to link account');
+      throw new Error('Failed to link account:' + error.message);
     }
   }
 
   async unlinkAccount({ providerAccountId, provider }) {
     try {
-      let deletedAccount: AccountModel;
-      if (providerAccountId) {
-        // If providerAccountId is provided, delete by the providerAccountId
-        deletedAccount = await AccountModel.query()
-          .where({ providerAccountId })
-          .delete()
-          .returning('*')
-          .first();
-      } else {
-        // If providerAccountId is not provided, delete by the provider
-        deletedAccount = await AccountModel.query()
-          .where({ provider })
-          .delete()
-          .returning('*')
-          .first();
-      }
+      await AccountModel.query().where({ provider, providerAccountId }).delete();
 
-      return deletedAccount;
+      return true;
     } catch (error) {
-      throw new Error('Failed to unlink account');
+      throw new Error('Failed to unlink account:' + error.message);
+    }
+  }
+
+  async unlinkAccountByUser(userId: string) {
+    try {
+      await AccountModel.query().where({ userId }).delete();
+
+      return true;
+    } catch (error) {
+      throw new Error('Failed to unlink account by user:' + error.message);
+    }
+  }
+
+  async createSession(session: Session, currentUser: string) {
+    try {
+      const newSession = await SessionModel.query()
+        .insertAndFetch(session)
+        .context({ currentUser });
+      return newSession;
+    } catch (error) {
+      throw new Error('Failed to create Session: ' + error.message);
+    }
+  }
+
+  async updateSession(session: Session, currentUser: string) {
+    try {
+      await SessionModel.query()
+        .where('sessionToken', session.sessionToken)
+        .patch(session)
+        .context({ currentUser });
+      return true;
+    } catch (error) {
+      throw new Error('Failed to update Session: ' + error.message);
+    }
+  }
+
+  async deleteSession(sessionToken: string) {
+    try {
+      await SessionModel.query().delete().where({ sessionToken });
+    } catch (error) {
+      throw new Error('Failed to delete Session: ' + error.message);
+    }
+  }
+
+  async deleteSessionByUser(userId: string) {
+    try {
+      await SessionModel.query().delete().where({ userId });
+    } catch (error) {
+      throw new Error('Failed to delete Session by user: ' + error.message);
+    }
+  }
+
+  async getSession(sessionToken: string) {
+    try {
+      const session = await SessionModel.query().findOne({ sessionToken });
+      const user = session ? await UserModel.query().findById(session.userId) : null;
+      return { session, user };
+    } catch (error) {
+      throw new Error('Failed to get Session: ' + error.message);
     }
   }
 }

@@ -6,25 +6,26 @@ const userService = new UserService();
 
 const getUser = async (req: Request, res: Response) => {
   try {
-    const { providerAccountId, provider, email, id } = req.params;
+    const { providerAccountId, provider, email, id } = req.query;
 
+    if (!providerAccountId && !provider && !email && !id) {
+      const users = await userService.getUsers();
+      return res.json(users);
+    }
+
+    let user: User | undefined;
     if (id) {
-      const user = await userService.getUser(id);
-      return res.json(user);
+      user = await userService.getUser(id as string);
     }
 
     if (email) {
-      const user = await userService.getUserByEmail(email);
-      return res.json(user);
+      user = await userService.getUserByEmail(email as string);
     }
 
     if (providerAccountId && provider) {
-      const user = await userService.getUserByAccount({ providerAccountId, provider });
-      return res.json(user);
+      user = await userService.getUserByAccount({ providerAccountId, provider });
     }
-
-    const users = await userService.getUsers();
-    res.json(users);
+    return user ? res.json(user) : res.status(404).json(null);
   } catch (error) {
     res.status(500).json({ error: 'Failed to retrieve users: ' + error.message });
   }
@@ -33,7 +34,7 @@ const getUser = async (req: Request, res: Response) => {
 const createUser = async (req: Request, res: Response) => {
   try {
     const { user }: { user: NewUser } = req.body;
-    const { user: currentUser } = req.session;
+    const currentUser = req.body.currentUser;
 
     const createdUser = await userService.createUser(user, currentUser);
     res.status(201).json(createdUser);
@@ -46,6 +47,9 @@ const getUserbyId = async (req: Request, res: Response) => {
   try {
     const userId = req.params.id;
     const user = await userService.getUser(userId);
+
+    if (!user) res.status(404).json(null);
+
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Failed to retrieve user:' + error.message });
@@ -56,7 +60,7 @@ const updateUser = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const { user: updatedUser }: { user: User } = req.body;
-    const { user: currentUser } = req.session;
+    const currentUser = req.body.currentUser;
 
     const user = await userService.updateUser({ ...updatedUser, id }, currentUser);
     res.json(user);

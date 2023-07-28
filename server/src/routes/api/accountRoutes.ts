@@ -5,6 +5,6 @@ import { authController } from '../../controllers';
 const router = express.Router();
 
 router.post('/link', authController.linkAccount);
-router.post('/unlink/:providerAccountId?', authController.unlinkAccount);
+router.delete('/unlink/:providerAccountId?', authController.unlinkAccount);
 
 export default router;

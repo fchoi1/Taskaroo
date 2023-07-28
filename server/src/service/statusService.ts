@@ -1,9 +1,9 @@
 import { StatusModel } from '../models';
-import type { SessionUser, Status } from '../utils/Interfaces';
+import type { Status } from '../utils/Interfaces';
 
 class StatusService {
-  async createStatus(status: Status, currentUser: SessionUser): Promise<void> {
-    await StatusModel.query().insert(status).context({currentUser});
+  async createStatus(status: Status, currentUser: string): Promise<void> {
+    await StatusModel.query().insert(status).context({ currentUser });
   }
 
   async getStatuses(): Promise<Status[]> {

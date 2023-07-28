@@ -28,22 +28,14 @@ export interface Project extends BaseModelInterface {
   color: string;
 }
 
-export interface BaseUser extends BaseModelInterface {
+export interface User extends BaseModelInterface {
   name: string;
   email: string;
-  firstName?: string;
+  firstName: string;
   lastName?: string;
   emailVerified?: Date;
   image?: string;
   fullname?: string;
-}
-
-export interface User extends BaseUser {
-  firstName: string; // Override the firstName property with a required field
-}
-
-export interface AdapterUser extends BaseUser {
-  firstName?: string; // Mark the firstName property as optional
 }
 
 export interface Account extends BaseModelInterface {
@@ -60,11 +52,16 @@ export interface Account extends BaseModelInterface {
   session_state?: string;
 }
 
-export interface Session {
+export interface SessionUser {
+  id: string;
+  email: string;
+  username?: string;
+}
+
+export interface SessionData {
   loggedIn?: boolean;
-  userId?: string;
-  sessionToken?: string;
-  expires?: Date;
+  user?: SessionUser;
+  token?: string;
 }
 
 type OmitBaseModel<T> = Omit<T, keyof BaseModelInterface>;

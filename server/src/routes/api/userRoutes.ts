@@ -7,7 +7,7 @@ router.get('/', userController.getUser);
 router.get('/:id', userController.getUserbyId);
 router.post('/', userController.createUser);
 router.put('/:id', userController.updateUser);
-router.delete('/', userController.deleteUser);
+router.delete('/:id', userController.deleteUser);
 
 // Add other route definitions for task operations
 
