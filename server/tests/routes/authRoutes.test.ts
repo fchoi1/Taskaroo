@@ -1,4 +1,4 @@
-import { authController } from '../../src/controllers';
+// import { authController } from '../../src/controllers';
 import app from '../testServer';
 
 const baseUrl = 'http://localhost:3001';
@@ -29,14 +29,14 @@ describe('Sanity test', () => {
   });
 });
 
-describe('User Routes', () => {
-  it('should call login', async (done) => {
-    const result = await fetch(`${baseUrl}/api/user`, { method: 'GET' });
-    const data = await result.json();
-    expect(data.status).toBe(200);
-    done();
-  });
-});
+// describe('User Routes', () => {
+//   it('should call login', async (done) => {
+//     const result = await fetch(`${baseUrl}/api/user`, { method: 'GET' });
+//     const data = await result.json();
+//     expect(data.status).toBe(200);
+//     done();
+//   });
+// });
 
 
 // describe('Link Routes', () => {

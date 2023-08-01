@@ -1,5 +1,5 @@
 import { AccountModel, SessionModel, UserModel } from '../models';
-import type { NewAccount, Session, User } from '../utils/Interfaces';
+import type { NewAccount, NewSession, Session, User } from '../utils/Interfaces';
 
 class AuthService {
   async authenticateUser(
@@ -47,7 +47,7 @@ class AuthService {
     }
   }
 
-  async createSession(session: Session, currentUser: string) {
+  async createSession(session: NewSession, currentUser: string) {
     try {
       const newSession = await SessionModel.query()
         .insertAndFetch(session)

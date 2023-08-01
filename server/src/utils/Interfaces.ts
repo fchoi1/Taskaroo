@@ -60,7 +60,7 @@ export interface Account extends BaseModelInterface {
   session_state?: string;
 }
 
-export interface Session {
+export interface Session extends BaseModelInterface {
   loggedIn?: boolean;
   userId?: string;
   sessionToken?: string;
@@ -70,8 +70,10 @@ export interface Session {
 type OmitBaseModel<T> = Omit<T, keyof BaseModelInterface>;
 
 export type NewUser = OmitBaseModel<User>;
+export type NewAdapterUser = OmitBaseModel<AdapterUser>;
 export type NewStatus = OmitBaseModel<Status>;
 export type NewProject = OmitBaseModel<Project>;
 export type NewTask = OmitBaseModel<Task>;
 export type NewAccount = OmitBaseModel<Account>;
 export type NewComment = OmitBaseModel<Comment>;
+export type NewSession = OmitBaseModel<Session>;
